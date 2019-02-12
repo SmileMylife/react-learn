@@ -1,0 +1,30 @@
+.layoutContainer {
+    height: 100%;
+}
+
+.leftLayout {
+    width: 15%;
+    float: left;
+    height: 100%;
+    background-color: #ffdcdf;
+}
+
+.topLayout {
+    width: 85%;
+    height: 10%;
+    float: right;
+    background-color: #cdffea;
+}
+
+.tabLayout {
+    width: 85%;
+    height: 5%;
+    float: right;
+}
+
+.midLayout {
+    width: 85%;
+    float: right;
+    height: 85%;
+    background-color: #ff7172;
+}
