@@ -3,14 +3,18 @@
  */
 import React from "react"
 import "./login.css"
+import Input from "../input/input";
 
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.switchLoginAndRegister = this.switchLoginAndRegister.bind(this);   //切换登录和注册页面
+        this.requireCheck = this.requireCheck.bind(this);   //必填校验
+        this.showPlaceholder = this.showPlaceholder.bind(this); //显示提示语
         this.state = {
-            showRegister: false,
+            showRegister: false,    //注册和登录切换状态
+            requireCheck: true,     //校验状态及提示消息
         }
     }
 
@@ -22,6 +26,21 @@ class Login extends React.Component {
                 showRegister: !flag
             }
         )
+    }
+
+    //必填校验
+    requireCheck(event) {
+        console.log(event);
+        const value = event.target.value;
+        if (value == "" || value == null || value == undefined) {
+            this.setState({
+                requireCheck: false
+            });
+        }
+    }
+    
+    showPlaceholder() {
+        this.setState({requireCheck: true})
     }
 
     render() {
@@ -42,12 +61,12 @@ class Login extends React.Component {
                                         </select>
                                     </div>
                                     <div className="float_right user_input_right">
-                                        <input type="text" placeholder="手机号或邮箱"/>
+                                        <Input type="text" isRequired={true} placeholder="用户名" noPassPrompt="请输入用户名"/>
                                     </div>
                                 </div>
                             :
                             <div className="login_input">
-                                <input type="text" placeholder="手机号或邮箱"/>
+                                <input type="text" onBlur={this.requireCheck} onFocus={this.showPlaceholder} placeholder={this.state.requireCheck ? "手机号或邮箱" : "请输入手机号或邮箱"} className={!this.state.requireCheck ? "checkNoPass" : ""}/>
                             </div>
                         }
                     </div>
@@ -56,9 +75,9 @@ class Login extends React.Component {
                     <div className="pwd_input">
                         {
                             this.state.showRegister ?
-                                <div><input type="text" placeholder="输入6位短信验证码" className="register_identify_code" /> <a href="javascript:void(0)"
+                                <div><input type="text" onBlur={this.requireCheck} onFocus={this.showPlaceholder} placeholder={this.state.requireCheck ? "输入六位短信验证码" : "请输入验证码"} className={!this.state.requireCheck ? "checkNoPass register_identify_code" : "register_identify_code"} /> <a href="javascript:void(0)"
                                                                                      className="getIdentifyCode">获取短信验证码</a>
-                                </div> : <input type="password" placeholder="密码" className="login_pwd"/>
+                                </div> : <input type="password" onBlur={this.requireCheck} placeholder={this.state.requireCheck ? "密码" : "请输入密码"} className={!this.state.requireCheck ? "checkNoPass login_pwd" : "login_pwd"} />
                         }
 
                     </div>
@@ -74,8 +93,9 @@ class Login extends React.Component {
                     <div className="login_button">
                         <button>登录</button>
                     </div>
-                    <div className="more_login">
-                        <p>二维码登录 · 邮箱帐号登录 · 社交帐号登录</p>
+                    <div>
+                        {this.state.showRegister ? <p className="register_protocol">注册即代表同意《知乎协议》《隐私保护指引》
+                            <a>注册机构号</a></p> : <p className="more_login">二维码登录 · 邮箱帐号登录 · 社交帐号登录</p>}
                     </div>
                 </div>
                 <div className="have_no_account">

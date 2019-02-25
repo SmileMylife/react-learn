@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import App from "./components/app/app";
+import Input from "./components/input/input";
 
 
 /*const Index = () => <h2>Home</h2>;
@@ -89,4 +90,4 @@ const Header = () => (
     </ul>
 );*/
 
-ReactDom.render(<App />, document.getElementById("body"));
+ReactDom.render(<App/>, document.getElementById("body"));
