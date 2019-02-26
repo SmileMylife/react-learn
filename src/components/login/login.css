@@ -3,13 +3,14 @@ h1, p {
 }
 
 .login_form h1 {
-    fontSize: "60px";
+    font-size: 70px;
     color: rgb(0, 119, 255);
-    marginBottom: "20px";
+    margin-bottom: 0px;
     padding-top: 20px;
 }
 
 p.explain_title {
+    margin-top: 0px;
     font-size: 20px;
     color: rgb(0, 119, 255);
 }
@@ -17,25 +18,13 @@ p.explain_title {
 .login_form {
     width: 430px;
     background-color: white;
-    margin: 30px auto;
+    margin: 50px auto;
     border-radius: 2px;
 }
 
 .login_container {
     width: 350px;
     margin: 0 auto;
-}
-
-.float_left {
-    float: left;
-}
-
-.float_right {
-    float: right;
-}
-
-.float_container {
-    overflow: hidden;
 }
 
 .user_input_left {
@@ -62,11 +51,6 @@ p.explain_title {
     outline-style: none;
 }
 
-.underline {
-    margin: 15px 0 0 0;
-    border-top: 1px solid rgb(235, 235, 235);
-}
-
 .pwd_input {
     margin: 20px 0 0 0;
 }
@@ -75,7 +59,6 @@ p.explain_title {
     width: 100%;
     font-size: 14px;
     border: none;
-    padding-left: 10px;
     outline-style: none;
 }
 
@@ -93,13 +76,13 @@ p.explain_title {
     color: rgb(116, 130 ,156);
 }
 
-.forgerPwd {
+.forgetPwd {
     font-size: 14px;
     color: rgb(140, 160 ,157);
     text-decoration: none;
 }
 
-.forgerPwd:hover {
+.forgetPwd:hover {
     color: rgb(128, 128, 128);
 }
 
@@ -143,31 +126,13 @@ p.explain_title {
 .login_input input {
     width: 400px;
     font-size: 14px;
-    padding-left: 10px;
     border: none;
     outline-style: none;
 }
 
-.getIdentifyCode {
-    text-decoration: none;
-    font-size: 14px;
-    color: rgb(16, 74, 155);
-    float: right;
-}
-
-.getIdentifyCode:hover {
-    color: rgb(124,137, 161);
-}
-
-.register_identify_code {
-    width: 65%;
-    font-size: 14px;
-    border: none;
-    padding-left: 10px;
-    outline-style: none;
-}
-
+/*注册协议*/
 .register_protocol{
+    margin: 20px 0 20px 0;
     font-size: 13px;
     color: rgb(140, 160 ,157);
 }
@@ -176,8 +141,4 @@ p.explain_title {
     margin-left: 10px;
     color: rgb(55, 104, 171);
     cursor: pointer;
-}
-
-.checkNoPass::placeholder {
-    color: red;
 }

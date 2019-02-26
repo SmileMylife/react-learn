@@ -1,0 +1,44 @@
+.phoneInput_container {
+    min-width: 350px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    overflow: hidden;
+}
+
+.checkNoPass::placeholder {
+    color: red;
+}
+
+.phoneInput_select_container {
+    width: 28%;
+}
+
+.phoneInput_select_container select {
+    padding-left: 0px;
+    width: 100%;
+    color: rgb(125, 135, 138);
+    font-size: 14px;
+    outline-style: none;
+    border: none;
+    background: none;
+}
+
+.phoneInput_input_container {
+    width: 70%;
+}
+
+.phoneInput_input_container input {
+    font-size: 14px;
+    border: none;
+    border-left: 1px solid rgb(235, 235, 235);
+    padding-left: 20px;
+    outline-style: none;
+}
+
+.float_left {
+    float: left;
+}
+
+.float_right {
+    float: right;
+}

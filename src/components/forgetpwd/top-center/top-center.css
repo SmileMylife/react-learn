@@ -1,0 +1,53 @@
+.top_center_container {
+    width: 35%;
+    min-width: 440px;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+}
+
+/*点击前的input框*/
+.beforeInput {
+    font-size: 15px;
+    padding-left: 10px;
+    width: 330px;
+    height: 30px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid rgb(235, 235, 235);
+    background-color: rgb(246, 246, 246);
+}
+
+.beforeInput::placeholder {
+    font-size: 14px;
+    color: rgb(134, 145, 169);
+}
+
+/*点击后的input框*/
+.behindInput {
+    font-size: 15px;
+    padding-left: 10px;
+    width: 400px;
+    height: 30px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid rgb(235, 235, 235);
+    background-color: rgb(114, 125, 149);
+}
+
+.search {
+    color: #8590A6;
+    cursor: pointer;
+}
+
+.search_container {
+    margin-left: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+svg {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}

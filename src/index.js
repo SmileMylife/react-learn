@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import "./index.css"
+import ForgetPwd from "./components/forgetpwd/forgetpwd";
 import App from "./components/app/app";
+import PhoneInput from "./components/phone_input/phone_input";
 import Input from "./components/input/input";
+import MsgCodeInput from "./components/msg-code-input/msg-code-input";
 
 
 /*const Index = () => <h2>Home</h2>;
@@ -90,4 +93,4 @@ const Header = () => (
     </ul>
 );*/
 
-ReactDom.render(<App/>, document.getElementById("body"));
+ReactDom.render(<MsgCodeInput needUnderline = {true}/>, document.getElementById("root"));

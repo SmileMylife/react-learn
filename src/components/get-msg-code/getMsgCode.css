@@ -1,0 +1,14 @@
+.getIdentifyCode {
+    text-decoration: none;
+    font-size: 14px;
+    color: rgb(16, 74, 155);
+}
+
+.getIdentifyCode:hover {
+    color: rgb(124,137, 161);
+}
+
+.countDown {
+    font-size: 14px;
+    color: rgb(197, 202, 213);
+}

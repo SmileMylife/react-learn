@@ -1,3 +1,4 @@
+/*
 body {
     margin: 0px;
     padding: 0px;
@@ -5,3 +6,7 @@ body {
     background-color: #b8e5f8;
     background-size: cover;
 }
+
+.float_right {
+    float: right;
+}*/

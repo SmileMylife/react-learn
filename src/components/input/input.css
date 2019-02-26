@@ -1,3 +1,26 @@
+/*可提*/
 .checkNoPass::placeholder {
     color: red;
+}
+/*可提*/
+.clearBoth {
+    clear: both;
+}
+
+/*可提*/
+.underline {
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+/*可提*/
+.overflowHidden {
+    overflow: hidden;
+}
+
+.login_phone_input {
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    outline-style: none;
 }
