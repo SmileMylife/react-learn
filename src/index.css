@@ -11,10 +11,6 @@
     float: right;
 }
 
-.float_container {
-    overflow: hidden;
-}
-
 /*校验不通过*/
 .checkNoPass::placeholder {
     color: red;

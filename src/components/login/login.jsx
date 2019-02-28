@@ -4,10 +4,13 @@
 import React from "react"
 import "./login.css"
 import Input from "../input/input";
-import GetMsgCode from "../get-msg-code/getMsgCode";
 import PhoneInput from "../phone_input/phone_input";
+import MsgCodeInput from "../msg-code-input/msg-code-input";
+import logo from "../../common/logo.png"
 
-
+/**
+ * 如何引入图片文件，使用import方式即可，或者使用require.js，使用iport方式导入后使用jsx语法解析。
+ */
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -53,7 +56,7 @@ class Login extends React.Component {
         const msgLogin = this.state.msgLogin;
         return (
             <div className="login_form">
-                <h1>知乎</h1>
+                <h1><img src={logo} alt=""/></h1>
                 <p className="explain_title">
                     {showRegister ? <span>注册</span> : <span>登录</span>}知乎，发现更大的世界</p>
                 <div className="login_container">
@@ -69,9 +72,7 @@ class Login extends React.Component {
                         {
                             (showRegister || msgLogin) ?
                                 <div>
-                                    <Input type="text" isRequired={true} placeholder="输入6位短信验证码" noPassPrompt="请输入短信验证码"
-                                           classname="register_identify_code" needUnderline={true}/>
-                                    <GetMsgCode classname="float_right"/>
+                                    <MsgCodeInput needUnderline={true}/>
                                 </div> :
                                 <Input type="text" isRequired={true} placeholder="密码" noPassPrompt="请输入密码"
                                        classname="login_pwd" needUnderline={true}/>

@@ -27,30 +27,6 @@ p.explain_title {
     margin: 0 auto;
 }
 
-.user_input_left {
-    width: 28%;
-}
-
-.user_input_right {
-    width: 70%;
-}
-
-.user_input_left select {
-    color: rgb(125, 135, 138);
-    font-size: 14px;
-    outline-style: none;
-    border: none;
-    background: none;
-}
-
-.user_input_right input {
-    font-size: 14px;
-    border: none;
-    border-left: 1px solid rgb(235, 235, 235);
-    padding-left: 20px;
-    outline-style: none;
-}
-
 .pwd_input {
     margin: 20px 0 0 0;
 }
@@ -60,10 +36,6 @@ p.explain_title {
     font-size: 14px;
     border: none;
     outline-style: none;
-}
-
-.float_container {
-    margin: 15px 0 0 0;
 }
 
 .identifyCode {
@@ -111,11 +83,17 @@ p.explain_title {
 
 .have_no_account {
     width: 100%;
-    height: 50px;
+    height: 60px;
+    text-align: center;
     border-radius: 4px;
     border-top: 1px solid rgb(235, 235, 235);
     background-color: rgb(246, 246, 246);
     font-size: 16px;
+}
+
+.have_no_account p {
+    display: inline;
+    line-height: 60px;
 }
 
 .have_no_account a {
