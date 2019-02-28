@@ -1,10 +1,7 @@
+
+/*下载知乎按钮*/
 .downloadButton {
     width: 430px;
-    margin: 30px auto;
-}
-
-.downloadButton button {
-    width: 100%;
     height: 50px;
     outline: none;
     border: none;
@@ -13,8 +10,4 @@
     font-size: 14px;
     color: rgb(253, 253, 253);
     background-color: rgb(132, 143, 167);
-}
-
-.downloadButton button:hover {
-    cursor: pointer;
 }

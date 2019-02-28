@@ -3,9 +3,9 @@
  */
 import React from "react"
 
-import Login from "../login/login.jsx";
-import Downloadbutton from "../downloadbutton/downloadbutton";
+import Login from "../components/login/login.jsx";
 import "./app.css"
+import Button from "../components/button/button";
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +19,6 @@ class App extends React.Component {
         return (
             <div>
                 <Login/>
-                <Downloadbutton/>
             </div>
         );
     }

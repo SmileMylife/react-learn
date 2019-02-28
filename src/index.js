@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDom from 'react-dom'
 // import "./index.css"
 import ForgetPwd from "./components/forgetpwd/forgetpwd";
-import App from "./components/app/app";
+import App from "./app/app";
 import PhoneInput from "./components/phone_input/phone_input";
 import Input from "./components/input/input";
 import MsgCodeInput from "./components/msg-code-input/msg-code-input";
+import Button from "./components/button/button";
 
 
 /*const Index = () => <h2>Home</h2>;

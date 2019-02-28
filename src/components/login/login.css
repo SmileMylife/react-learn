@@ -18,7 +18,7 @@ p.explain_title {
 .login_form {
     width: 430px;
     background-color: white;
-    margin: 50px auto;
+    margin: 50px auto 30px auto;
     border-radius: 2px;
 }
 
@@ -119,4 +119,9 @@ p.explain_title {
     margin-left: 10px;
     color: rgb(55, 104, 171);
     cursor: pointer;
+}
+
+.buttonContainer {
+    width: 430px;
+    margin: 0 auto;
 }
