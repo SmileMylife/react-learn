@@ -94,4 +94,4 @@ const Header = () => (
     </ul>
 );*/
 
-ReactDom.render(<App/>, document.getElementById("root"));
+ReactDom.render(<ForgetPwd/>, document.getElementById("root"));

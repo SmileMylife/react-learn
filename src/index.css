@@ -1,3 +1,11 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("./common/logo.png");
+    background-color: #b8e5f8;
+    background-size: cover;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -27,11 +35,6 @@
 /*左对齐*/
 .text_align_left {
     text-align: left;
-}
-
-/*字体颜色*/
-.title_prompt_color {
-    color: rgb(132, 143, 167);
 }
 
 /*上下边距*/

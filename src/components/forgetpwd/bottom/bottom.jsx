@@ -1,6 +1,7 @@
 import React from "react"
 import "./bottom.css"
 import Input from "../../input/input";
+import Button from "../../button/button";
 
 class Bottom extends React.Component {
     constructor(props) {
@@ -13,9 +14,10 @@ class Bottom extends React.Component {
     render() {
         return (
             <div className="find_pwd_container">
-                <h2 className="text_align_left">找回密码</h2>
-                <p className="text_align_left title_prompt_color top_bottom_margin">验证码将会发送至你的注册邮箱或手机</p>
-                <Input type="text" isRequired={true} placeholder="手机号或邮箱" noPassPrompt="请输入手机号或邮箱" classname = "input_standard"/>
+                <h2 className="text_align_left ">找回密码</h2>
+                <p className="text_align_left title_prompt_color forgetPwd_prompt_info">验证码将会发送至你的注册邮箱或手机</p>
+                <Input type="text" isRequired={true} placeholder="手机号或邮箱" noPassPrompt="请输入手机号或邮箱" needUnderline={true} />
+                <Button classname="login_button" buttonName="下一步"/>
             </div>
         );
     }

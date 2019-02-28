@@ -1,6 +1,7 @@
 import React from "react"
 import "./top-left.css"
 import logo from "../../../common/logo.png"
+import Logo from "../../logo/logo";
 
 class TopLeft extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class TopLeft extends React.Component {
                 <ul>
                     {this.state.data.map((item, index) => {
                         if (index == 0) {
-                            return (<li key={index}><a className="logo" href="javascript:void(0)"><img src={logo} alt=""/></a></li>)
+                            return (<li key={index}><a href="" className="logo"><Logo wdith="65" height="30"/></a></li>)
                         }
                         return (<li key={index}><a className="top_title" href="javascript:void(0)">{item}</a></li>);
                     })}

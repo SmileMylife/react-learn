@@ -58,8 +58,8 @@ class Login extends React.Component {
         return (
             <div>
                 <div className="login_form">
-                    <h1><img src={logo} alt=""/></h1>
-                    <p className="explain_title">
+                    <h1 className="text_align_center"><img src={logo} alt=""/></h1>
+                    <p className="explain_title text_align_center">
                         {showRegister ? <span>注册</span> : <span>登录</span>}知乎，发现更大的世界</p>
                     <div className="login_container">
                         {/*注册及登录手机号切换*/}
@@ -93,9 +93,7 @@ class Login extends React.Component {
                             </div>
                         </div>
 
-                        <div className="login_button">
-                            <button>登录</button>
-                        </div>
+                        <Button classname="login_button" buttonName="登录"/>
                         <div>
                             {showRegister ? <p className="register_protocol">注册即代表同意《知乎协议》《隐私保护指引》
                                 <a>注册机构号</a></p> : <p className="more_login">二维码登录 · 邮箱帐号登录 · 社交帐号登录</p>}

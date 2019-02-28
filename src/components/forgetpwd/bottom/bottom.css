@@ -1,5 +1,8 @@
 .find_pwd_container {
-    width: 400px;
-    margin: 0 auto;
+    width: 320px;
+    margin: 100px auto 0 auto;
 }
 
+.forgetPwd_prompt_info {
+    margin-bottom: 40px;
+}
