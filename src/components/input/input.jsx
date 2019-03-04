@@ -55,7 +55,7 @@ class Input extends React.Component {
         return (
             <div>
                 <div style={{width: this.props.width}} className={this.props.needUnderline ? "underline" : null}>
-                    <input name={this.props.id} type={this.props.type ? "text" : this.props.type}
+                    <input name={this.props.id} type={this.props.type ? this.props.type : "text"}
                            placeholder={this.state.checkStatus ? this.props.placeholder : this.props.noPassPrompt}
                            onFocus={this.showPlaceholder} onBlur={this.requireCheck} className={`${classname} ${checkClass}`} onChange={this.props.getData}/>
                 </div>

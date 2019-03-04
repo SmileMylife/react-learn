@@ -116,7 +116,7 @@ class Login extends React.Component {
                                     <div>
                                         <MsgCodeInput id="msgCodeOrPwd" getData={this.getFormData} getMsgCode={this.getMsgCode} needUnderline={true} msgContent={this.state.msgContent}/>
                                     </div> :
-                                    <Input id="msgCodeOrPwd" type="text" isRequired={true} placeholder="密码" noPassPrompt="请输入密码"
+                                    <Input id="msgCodeOrPwd" type="password" isRequired={true} placeholder="密码" noPassPrompt="请输入密码"
                                            classname="login_pwd" needUnderline={true} getData={this.getFormData}/>
                             }
                         </div>
