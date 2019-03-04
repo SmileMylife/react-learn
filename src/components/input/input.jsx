@@ -13,21 +13,19 @@ class Input extends React.Component {
         super(props);
         this.requireCheck = this.requireCheck.bind(this);
         this.showPlaceholder = this.showPlaceholder.bind(this);
-        this.initClassname = this.props.classname == undefined ? "login_phone_input" : this.props.classname;
         this.state = {
-            placeholder: this.props.placeholder,
+            checkStatus: this.props.checkStatus == undefined ? true : this.props.checkStatus,    //此运算符如果前者为true后者也为true则返回后者，如果有任意false则返回前者
             classname: this.props.classname,  //自定义初始化样式，没有使用默认初始化样式
-        }
+        };
     }
 
     //必填校验
     requireCheck(event) {
         const value = event.target.value;
         if (this.props.isRequired) {
-            if (value == "" || value == null || value == undefined) {
+            if (!value) {
                 this.setState({
-                    placeholder: this.props.noPassPrompt,
-                    classname: this.initClassname + " checkNoPass"
+                    checkStatus: false,
                 });
             }
         }
@@ -36,21 +34,30 @@ class Input extends React.Component {
     //显示占位符
     showPlaceholder() {
         this.setState({
-            placeholder: this.props.placeholder,
-            classname: this.initClassname
+            checkStatus: true,
         })
     }
 
-    //失去焦点时占位符显示
+    //用于其他组件控制该组件的显示，出现的bug是因为此处传入的是属性，部分input可能没有属性，所以可能为undefined。
+    componentWillReceiveProps(nextProps) {
+        console.log(this.state);
+        if (nextProps.checkStatus != undefined) {
+            this.setState({
+                checkStatus: nextProps.checkStatus
+            });
+        }
+    }
 
     render() {
-        var classname = this.state.classname;
+        var classname = this.state.classname ? this.state.classname : "login_phone_input";
+        var checkClass = this.state.checkStatus ? "" : "checkNoPass";
+
         return (
             <div>
-                <div style={{width: this.props.width}} className={this.props.needUnderline ? "underline" : ""}>
-                    <input type={this.props.type == "" ? "text" : this.props.type}
-                           placeholder={this.state.placeholder}
-                           onFocus={this.showPlaceholder} onBlur={this.requireCheck} className={classname == undefined ? "login_phone_input" : classname}/>
+                <div style={{width: this.props.width}} className={this.props.needUnderline ? "underline" : null}>
+                    <input name={this.props.id} type={this.props.type ? "text" : this.props.type}
+                           placeholder={this.state.checkStatus ? this.props.placeholder : this.props.noPassPrompt}
+                           onFocus={this.showPlaceholder} onBlur={this.requireCheck} className={`${classname} ${checkClass}`} onChange={this.props.getData}/>
                 </div>
             </div>
         );

@@ -8,6 +8,8 @@ import PhoneInput from "../phone_input/phone_input";
 import MsgCodeInput from "../msg-code-input/msg-code-input";
 import logo from "../../common/logo.png"
 import Button from "../button/button";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ForgetPwd from "../forgetpwd/forgetpwd";
 
 /**
  * 如何引入图片文件，使用import方式即可，或者使用require.js，使用iport方式导入后使用jsx语法解析。
@@ -16,12 +18,17 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.switchLoginAndRegister = this.switchLoginAndRegister.bind(this);   //切换登录和注册页面
-        this.requireCheck = this.requireCheck.bind(this);   //必填校验
         this.changeLoginStyle = this.changeLoginStyle.bind(this);   //更改登录方式
+        this.getFormData = this.getFormData.bind(this);     //获取表单数据
+        this.getMsgCode = this.getMsgCode.bind(this);   //获取短信验证码及校验
         this.state = {
             showRegister: false,    //注册和登录切换状态
-            requireCheck: true,     //校验状态及提示消息
             msgLogin: false,     //是否短信登录
+            formData: {
+
+            },
+            msgContent: "获取短信验证码",   //获取短信验证码倒计时
+            checkPhoneNumStatus: true   //默认校验通过
         }
     }
 
@@ -34,22 +41,55 @@ class Login extends React.Component {
         )
     }
 
-    //必填校验
-    requireCheck(event) {
-        console.log(event);
-        const value = event.target.value;
-        if (value == "" || value == null || value == undefined) {
-            this.setState({
-                requireCheck: false
-            });
-        }
-    }
-
     //更改登录方式，短信和用户名密码方式
     changeLoginStyle() {
         this.setState({
             msgLogin: !this.state.msgLogin
         })
+    }
+
+    //表单内的组件变化时自动更新表单数据
+    getFormData(event) {
+        var name = event.target.name;
+        var value = event.target.value;
+        this.setState(function(preState, props) {
+            console.log(preState);
+            var obj = preState.formData;
+            obj[name] = value;
+            return {
+                formData: obj
+            };
+        });
+    }
+
+    //点击获取短信验证码
+    getMsgCode() {
+        //消除点击之后的延迟
+        if (!this.state.formData.phoneNumOrEmail) {     //判断手机号是否为空
+            //提示某字段不能为空
+            this.setState({
+                checkPhoneNumStatus: false
+            });
+            return ;
+        }
+        this.setState(
+            {msgContent: "60秒后可重发"}
+        );
+        var _this = this;
+        var time = 59;
+        var timer = setInterval(function () {
+            time--;
+            _this.setState({
+                msgContent: time + "秒后可重发"
+            });
+
+            if (time == 0) {
+                _this.setState({
+                    msgContent: "重新获取验证码"
+                });
+                clearInterval(timer);
+            }
+        }, 1000)
     }
 
     render() {
@@ -66,7 +106,7 @@ class Login extends React.Component {
                         <div className="float_container">
                             {
                                 (showRegister || msgLogin) ?
-                                    <PhoneInput/> : <Input type="text" isRequired={true} placeholder="手机号或邮箱" noPassPrompt="请输入手机号或邮箱" needUnderline={true} />
+                                    <PhoneInput id="phoneNumOrEmail" getData={this.getFormData} checkPhoneNumStatus={this.state.checkPhoneNumStatus}  /> : <Input id="phoneNumOrEmail" getData={this.getFormData} type="text" isRequired={true} placeholder="手机号或邮箱" noPassPrompt="请输入手机号或邮箱" needUnderline={true} />
                             }
                         </div>
                         {/*注册及登录密码切换*/}
@@ -74,10 +114,10 @@ class Login extends React.Component {
                             {
                                 (showRegister || msgLogin) ?
                                     <div>
-                                        <MsgCodeInput needUnderline={true}/>
+                                        <MsgCodeInput id="msgCodeOrPwd" getData={this.getFormData} getMsgCode={this.getMsgCode} needUnderline={true} msgContent={this.state.msgContent}/>
                                     </div> :
-                                    <Input type="text" isRequired={true} placeholder="密码" noPassPrompt="请输入密码"
-                                           classname="login_pwd" needUnderline={true}/>
+                                    <Input id="msgCodeOrPwd" type="text" isRequired={true} placeholder="密码" noPassPrompt="请输入密码"
+                                           classname="login_pwd" needUnderline={true} getData={this.getFormData}/>
                             }
                         </div>
 
@@ -89,12 +129,12 @@ class Login extends React.Component {
                             <div className="float_right">
                                 {(showRegister || msgLogin) ?
                                     <a href="javascript:void(0)" className="forgetPwd">接收语音验证码</a> :
-                                    <a href="./forgetPwd/forgetPwd.html" className="forgetPwd">忘记密码？</a>}
+                                    <a href="/forgetPwd" className="forgetPwd">忘记密码？</a>}
                             </div>
                         </div>
 
                         <Button classname="login_button" buttonName="登录"/>
-                        <div>
+                        <div className="text_align_center">
                             {showRegister ? <p className="register_protocol">注册即代表同意《知乎协议》《隐私保护指引》
                                 <a>注册机构号</a></p> : <p className="more_login">二维码登录 · 邮箱帐号登录 · 社交帐号登录</p>}
                         </div>
@@ -105,6 +145,7 @@ class Login extends React.Component {
                             <p>没有账号?<a href="javascript:void(0)" onClick={this.switchLoginAndRegister}>注册</a></p>}
                     </div>
                 </div>
+
                 <div className="buttonContainer">
                     <Button classname="downloadButton" buttonName="下载知乎"/>
                 </div>

@@ -7,6 +7,8 @@ import PhoneInput from "./components/phone_input/phone_input";
 import Input from "./components/input/input";
 import MsgCodeInput from "./components/msg-code-input/msg-code-input";
 import Button from "./components/button/button";
+import MyRouter from "./router/myrouter";
+import TestApp from "./testcomponent/testapp/testapp";
 
 
 /*const Index = () => <h2>Home</h2>;
@@ -94,4 +96,4 @@ const Header = () => (
     </ul>
 );*/
 
-ReactDom.render(<ForgetPwd/>, document.getElementById("root"));
+ReactDom.render(<App/>, document.getElementById("root"));
