@@ -23,7 +23,7 @@ class MsgCodeInput extends React.Component {
             <div>
                 <div className={`overflowHidden ${this.props.needUnderline ? "underline" : ""}`}>
                     <div className="float_left">
-                        <Input id={this.props.id} type="text" isRequired={true} placeholder="输入6位短信验证码" noPassPrompt="请输入短信验证码" width="100%" getData={this.props.getData} />
+                        <Input id={this.props.id} type="text" value={this.props.value} isRequired={true} checkResult={this.props.checkResult} width="100%" getData={this.props.getData} />
                     </div>
                     <GetMsgCode classname="float_right" getMsgCode={this.props.getMsgCode} msgContent={this.props.msgContent} />
                 </div>

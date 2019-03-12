@@ -22,8 +22,7 @@ class PhoneInput extends React.Component {
                         </select>
                     </div>
                     <div className="float_left phoneInput_input_container">
-                        <Input id={this.props.id} type="text" isRequired={true} placeholder="手机号" noPassPrompt="请输入手机号"
-                               width="100%" getData={this.props.getData} checkStatus={this.props.checkPhoneNumStatus}/>
+                        <Input id={this.props.id} value={this.props.value} type="text" isRequired={true} width="100%" getData={this.props.getData} checkResult={this.props.checkResult}/>
                     </div>
                 </div>
             </div>
