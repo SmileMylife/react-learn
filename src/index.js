@@ -1,99 +1,117 @@
-import React from 'react';
-import ReactDom from 'react-dom'
-// import "./index.css"
-import ForgetPwd from "./components/forgetpwd/forgetpwd";
+import ReactDom from "react-dom"
+import React, { Component } from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from "react-router-dom";
 import App from "./app/app";
-import PhoneInput from "./components/phone_input/phone_input";
-import Input from "./components/input/input";
-import MsgCodeInput from "./components/msg-code-input/msg-code-input";
-import Button from "./components/button/button";
-import MyRouter from "./router/myrouter";
-import TestApp from "./testcomponent/testapp/testapp";
 
 
-/*const Index = () => <h2>Home</h2>;
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
-
-const AppRouter = () => (
-    <Router>
-        <div>
-            <nav>
+function AuthExample() {
+    return (
+        <Router>
+            <div>
+                <AuthButton />
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/public">Public Page</Link>
                     </li>
                     <li>
-                        <Link to="/about/">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/users/">Users</Link>
+                        <Link to="/protected">Protected Page</Link>
                     </li>
                 </ul>
-            </nav>
-
-            <Route path="/" exact component={Index}></Route>
-            <Route path="/about/" component={About} />
-            <Route path="/users/" component={Users} />
-
-        </div>
-    </Router>
-);*/
-
-/*const App = () => (
-    <Router>
-        <div>
-            <Header />
-
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/topics" component={Topics} />
-        </div>
-    </Router>
-);
-
-const Home = () => <h2>Home</h2>;
-const Test = (props) => {
-    console.log(props.match);
-    return (
-        <p>测试标签</p>
-    )
+                <Route path="/public" component={Public} />
+                <Route path="/login" component={Login} />
+                <PrivateRoute path="/protected" component={Protected} />
+            </div>
+        </Router>
+    );
 }
-const About = () => <h2>About</h2>;
-const Topic = (props) => <h3>Requested Param: {props.match.params.id}</h3>;
-const Topics = ({ match }) => (
-    <div>
-        <h2>Topics</h2>
 
-        <ul>
-            <li>
-                <Link to={`${match.url}/components`}>Components</Link>
-            </li>
-            <li>
-                <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
-            </li>
-        </ul>
+const fakeAuth = {
+    isAuthenticated: false,
+    authenticate(cb) {
+        this.isAuthenticated = true;
+        setTimeout(cb, 100); // fake async
+    },
+    signout(cb) {
+        this.isAuthenticated = false;
+        setTimeout(cb, 100);
+    }
+};
 
-        <Route path={`${match.path}/:id`} component={Topic} />
-        <Route
-            exact
-            path={match.path}
-            render={() => <h3>Please select a topic.</h3>}
-        />
-    </div>
+const AuthButton = withRouter(
+    ({ history }) =>
+        fakeAuth.isAuthenticated ? (
+            <p>
+                Welcome!{" "}
+                <button
+                    onClick={() => {
+                        fakeAuth.signout(() => history.push("/"));
+                    }}
+                >
+                    Sign out
+                </button>
+            </p>
+        ) : (
+            <p>You are not logged in.</p>
+        )
 );
-const Header = () => (
-    <ul>
-        <li>
-            <Link to="/">Home</Link>
-        </li>
-        <li>
-            <Link to="/about">About</Link>
-        </li>
-        <li>
-            <Link to="/topics">Topics</Link>
-        </li>
-    </ul>
-);*/
+
+function PrivateRoute({ component: Component, ...rest }) {
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                fakeAuth.isAuthenticated ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: "/login",
+                            state: { from: props.location }
+                        }}
+                    />
+                )
+            }
+        />
+    );
+}
+
+function Public() {
+    return <h3>Public</h3>;
+}
+
+function Protected() {
+    return <h3>Protected</h3>;
+}
+
+class Login extends Component {
+    state = { redirectToReferrer: false };
+
+    login = () => {
+        fakeAuth.authenticate(() => {
+            this.setState({ redirectToReferrer: true });
+        });
+    };
+
+    render() {
+        let { from } = this.props.location.state || { from: { pathname: "/" } };
+        let { redirectToReferrer } = this.state;
+
+        if (redirectToReferrer) return <Redirect to={from} />;
+
+        return (
+            <div>
+                <p>You must log in to view the page at {from.pathname}</p>
+                <button onClick={this.login}>Log in</button>
+            </div>
+        );
+    }
+}
+
 
 ReactDom.render(<App/>, document.getElementById("root"));

@@ -23,6 +23,7 @@ class Login extends React.Component {
         this.getMsgCode = this.getMsgCode.bind(this);   //获取短信验证码及校验
         this.login = this.login.bind(this);
         this.register = this.register.bind(this);
+        this.showPlaceholder = this.showPlaceholder.bind(this);
         this.loginOrRegisterCheck = this.loginOrRegisterCheck.bind(this);
         this.state = {
             showRegister: false,    //注册和登录切换状态
@@ -32,7 +33,8 @@ class Login extends React.Component {
             phoneNumOrEmailCheckResult: {
                 status: true,
                 noPassMsg: "请输入手机号或邮箱",
-                passMsg: "手机号或邮箱"
+                passMsg: "手机号或邮箱",
+                defaultNoPassMsg: "请输入手机号或邮箱"
             },
             phoneNumOrEmailValue: "",
 
@@ -40,12 +42,14 @@ class Login extends React.Component {
                 status: true,
                 noPassMsg: "请输入密码",
                 passMsg: "密码",
+                defaultNoPassMsg: "请输入密码"
             },
 
             msgCheckResult: {
                 status: true,
                 noPassMsg: "请输入短信验证码",
                 passMsg: "输入六位短信验证码",
+                defaultNoPassMsg: "请输入短信验证码"
             },
             msgCodeOrPwdValue: ""
         }
@@ -53,19 +57,54 @@ class Login extends React.Component {
 
     //切换登录注册页面
     switchLoginAndRegister() {
+        var phoneState = this.state.phoneNumOrEmailCheckResult;
+        var pwdState = this.state.pwdCheckResult;
+        var msgState = this.state.msgCheckResult;
+
+        phoneState.status = true;
+        pwdState.status = true;
+        msgState.status = true;
+
+
         this.setState(
             {
                 showRegister: !this.state.showRegister,
                 phoneNumOrEmailValue: "",
-                msgCodeOrPwdValue: ""
+                msgCodeOrPwdValue: "",
+                phoneNumOrEmailCheckResult: phoneState,
+                pwdCheckResult: pwdState,
+                msgCheckResult: msgState
             }
         )
     }
 
     //更改登录方式，短信和用户名密码方式
     changeLoginStyle() {
+        var phoneState = this.state.phoneNumOrEmailCheckResult;
+        var pwdState = this.state.pwdCheckResult;
+        var msgState = this.state.msgCheckResult;
+
+        phoneState.status = true;
+        pwdState.status = true;
+        msgState.status = true;
+
         this.setState({
-            msgLogin: !this.state.msgLogin
+            msgLogin: !this.state.msgLogin,
+            phoneNumOrEmailValue: "",
+            msgCodeOrPwdValue: "",
+            phoneNumOrEmailCheckResult: phoneState,
+            pwdCheckResult: pwdState,
+            msgCheckResult: msgState
+        })
+    }
+
+    //显示占位符
+    showPlaceholder() {
+        this.setState({
+            checkResult: {
+                status: true,
+                noPassMsg: ""
+            }
         })
     }
 
@@ -96,12 +135,9 @@ class Login extends React.Component {
     //点击获取短信验证码
     getMsgCode() {
         //消除点击之后的延迟
-        var checkPhone = /^0\d{2,3}-?\d{7,8}$/;
-        var phoneNum = this.state.formData.phoneNumOrEmail;
+        var checkPhone = /^1[34578]\d{9}$/;
+        var phoneNum = this.state.phoneNumOrEmailValue;
         var preState = this.state.phoneNumOrEmailCheckResult;
-
-        var flag = checkPhone.test(phoneNum);
-        console.log("校验结果：" + flag);
 
         if (!phoneNum) {     //判断手机号是否为空
             //提示某字段不能为空
@@ -119,6 +155,8 @@ class Login extends React.Component {
             });
             return;
         }
+
+
         this.setState(
             {msgContent: "60秒后可重发"}
         );
@@ -158,7 +196,8 @@ class Login extends React.Component {
                 phoneNumOrEmailCheckResult: {
                     status: false,
                     noPassMsg: "手机号码不能为空",
-                    passMsg: "手机号或邮箱"
+                    passMsg: "手机号或邮箱",
+                    defaultNoPassMsg: "手机号码不能为空"
                 }
             });
             return;
@@ -170,7 +209,8 @@ class Login extends React.Component {
                 phoneNumOrEmailCheckResult: {
                     status: false,
                     noPassMsg: "手机号或邮箱不合法",
-                    passMsg: "手机号或邮箱"
+                    passMsg: "手机号或邮箱",
+                    defaultNoPassMsg: "输入手机号或邮箱"
                 }
             });
             return;
@@ -182,7 +222,8 @@ class Login extends React.Component {
                     pwdCheckResult: {
                         status: false,
                         noPassMsg: "密码不能为空",
-                        passMsg: "密码"
+                        passMsg: "密码",
+                        defaultNoPassMsg: "请输入密码"
                     }
                 });
                 return;
@@ -194,6 +235,7 @@ class Login extends React.Component {
                         status: false,
                         noPassMsg: "短信验证码不能为空",
                         passMsg: "输入六位短信验证码",
+                        defaultNoPassMsg: "短信验证码不能为空"
                     }
                 });
                 return;
@@ -203,8 +245,9 @@ class Login extends React.Component {
                     msgCodeOrPwdValue: "",
                     msgCheckResult: {
                         status: false,
-                        noPassMsg: "短信验证码必须要6位",
+                        noPassMsg: "短信验证码必须6位",
                         passMsg: "输入六位短信验证码",
+                        defaultNoPassMsg: "短信验证码不能为空"
                     }
                 });
                 return;
@@ -259,10 +302,11 @@ class Login extends React.Component {
                             {
                                 (showRegister || msgLogin) ?
                                     <PhoneInput id="phoneNumOrEmail" getData={this.getFormData}
-                                                value={this.state.phoneNumOrEmailValue}
+                                                value={this.state.phoneNumOrEmailValue} showPlaceholder={this.showPlaceholder}
                                                 checkResult={this.state.phoneNumOrEmailCheckResult}/> :
                                     <Input id="phoneNumOrEmail" getData={this.getFormData} type="text" isRequired={true}
                                            placeholder="手机号或邮箱" checkResult={this.state.phoneNumOrEmailCheckResult}
+                                           showPlaceholder={this.showPlaceholder}
                                            value={this.state.phoneNumOrEmailValue}
                                            needUnderline={true}/>
                             }
@@ -276,11 +320,13 @@ class Login extends React.Component {
                                                       getMsgCode={this.getMsgCode} needUnderline={true}
                                                       msgContent={this.state.msgContent}
                                                       value={this.state.msgCodeOrPwdValue}
+                                                      showPlaceholder={this.showPlaceholder}
                                                       checkResult={this.state.msgCheckResult}/>
                                     </div> :
                                     <Input id="msgCodeOrPwd" type="password" isRequired={true} classname="login_pwd"
                                            needUnderline={true} getData={this.getFormData}
                                            value={this.state.msgCodeOrPwdValue}
+                                           showPlaceholder={this.showPlaceholder}
                                            checkResult={this.state.pwdCheckResult}/>
                             }
                         </div>

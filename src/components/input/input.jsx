@@ -21,25 +21,25 @@ class Input extends React.Component {
 
     //必填校验
     requireCheck(event) {
-        const value = event.target.value;
         if (this.props.isRequired) {
             if (!value) {
+                var checkResult = this.state.checkResult;
+                checkResult.status = false;
                 this.setState({
-                    checkResult: {
-                        status: false,
-                        noPassMsg: this.props.noPassMsg
-                    }
-                });
+                    checkResult: checkResult
+                })
             }
+            console.log(this.state);
         }
     }
 
     //显示占位符
     showPlaceholder() {
+        var checkResult = this.state.checkResult;
+        checkResult.noPassMsg = this.props.checkResult.defaultNoPassMsg;
+        checkResult.status = true;
         this.setState({
-            checkResult: {
-                status: true
-            }
+            checkResult: checkResult
         })
     }
 
@@ -61,7 +61,7 @@ class Input extends React.Component {
                 <div style={{width: this.props.width}} className={this.props.needUnderline ? "underline" : null}>
                     <input name={this.props.id} type={this.props.type ? this.props.type : "text"}
                            value={this.props.value ? this.props.value : ""}
-                           placeholder={this.state.checkResult.status ? this.props.checkResult.passMsg : this.props.checkResult.noPassMsg}
+                           placeholder={this.state.checkResult.status ? this.state.checkResult.passMsg : this.state.checkResult.noPassMsg}
                            onFocus={this.showPlaceholder} onBlur={this.requireCheck}
                            className={`${classname} ${checkClass}`} onChange={this.props.getData} />
                 </div>
