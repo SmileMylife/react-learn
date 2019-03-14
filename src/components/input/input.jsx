@@ -21,6 +21,7 @@ class Input extends React.Component {
 
     //必填校验
     requireCheck(event) {
+        const value = event.target.value;
         if (this.props.isRequired) {
             if (!value) {
                 var checkResult = this.state.checkResult;
@@ -29,7 +30,6 @@ class Input extends React.Component {
                     checkResult: checkResult
                 })
             }
-            console.log(this.state);
         }
     }
 
