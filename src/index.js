@@ -1,117 +1,37 @@
-import ReactDom from "react-dom"
-import React, { Component } from "react";
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter
-} from "react-router-dom";
-import App from "./app/app";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { LocaleProvider, DatePicker, message } from 'antd';
+// 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+import "antd/dist/antd.css";
+import "./index.css";
 
+moment.locale('zh-cn');
 
-function AuthExample() {
-    return (
-        <Router>
-            <div>
-                <AuthButton />
-                <ul>
-                    <li>
-                        <Link to="/public">Public Page</Link>
-                    </li>
-                    <li>
-                        <Link to="/protected">Protected Page</Link>
-                    </li>
-                </ul>
-                <Route path="/public" component={Public} />
-                <Route path="/login" component={Login} />
-                <PrivateRoute path="/protected" component={Protected} />
-            </div>
-        </Router>
-    );
-}
-
-const fakeAuth = {
-    isAuthenticated: false,
-    authenticate(cb) {
-        this.isAuthenticated = true;
-        setTimeout(cb, 100); // fake async
-    },
-    signout(cb) {
-        this.isAuthenticated = false;
-        setTimeout(cb, 100);
-    }
-};
-
-const AuthButton = withRouter(
-    ({ history }) =>
-        fakeAuth.isAuthenticated ? (
-            <p>
-                Welcome!{" "}
-                <button
-                    onClick={() => {
-                        fakeAuth.signout(() => history.push("/"));
-                    }}
-                >
-                    Sign out
-                </button>
-            </p>
-        ) : (
-            <p>You are not logged in.</p>
-        )
-);
-
-function PrivateRoute({ component: Component, ...rest }) {
-    return (
-        <Route
-            {...rest}
-            render={props =>
-                fakeAuth.isAuthenticated ? (
-                    <Component {...props} />
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: "/login",
-                            state: { from: props.location }
-                        }}
-                    />
-                )
-            }
-        />
-    );
-}
-
-function Public() {
-    return <h3>Public</h3>;
-}
-
-function Protected() {
-    return <h3>Protected</h3>;
-}
-
-class Login extends Component {
-    state = { redirectToReferrer: false };
-
-    login = () => {
-        fakeAuth.authenticate(() => {
-            this.setState({ redirectToReferrer: true });
-        });
+class App extends React.Component {
+    state = {
+        date: null,
     };
 
+    handleChange = (date) => {
+        message.info(`您选择的日期是: ${date.format('YYYY-MM-DD')}`);
+        this.setState({ date });
+    }
     render() {
-        let { from } = this.props.location.state || { from: { pathname: "/" } };
-        let { redirectToReferrer } = this.state;
-
-        if (redirectToReferrer) return <Redirect to={from} />;
-
+        const { date } = this.state;
         return (
-            <div>
-                <p>You must log in to view the page at {from.pathname}</p>
-                <button onClick={this.login}>Log in</button>
-            </div>
+            <LocaleProvider locale={zhCN}>
+                <div style={{ width: 400, margin: '100px auto' }}>
+                    <DatePicker onChange={this.handleChange} />
+                    <div style={{ marginTop: 20 }}>
+                        当前日期：{date ? date.format('YYYY-MM-DD') : '未选择'}
+                    </div>
+                </div>
+            </LocaleProvider>
         );
     }
 }
 
-
-ReactDom.render(<App/>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
