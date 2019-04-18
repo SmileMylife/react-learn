@@ -170,7 +170,7 @@ class Table extends React.Component {
                             <option value="20">20</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
-                        </select>&nbsp; 共计 <span>{this.state.total}</span> 条，当前第 <span>{this.state.currentPageNum}</span> 页，
+                        </select>&nbsp; 共计 <span>{this.state.total}</span> 条 {Math.ceil((this.state.total / this.state.perPageCount))}页，当前第 <span>{this.state.currentPageNum}</span> 页，
                         </p>
                         <div style={{clear: "both", float: "right"}}>
                             <a href="javascript:void(0)" onClick={this.prePageNum}>上一页</a>&nbsp;
