@@ -90,10 +90,16 @@ class Table extends React.Component {
 
     //跳转至指定页
     breakPageNum = (event) => {
-        if (event.target) {
-            this.setState({
-                currentPageNum: parseInt(event.target.value)
-            });
+        if (event.target && event.target.value > 0) {
+            if (event.target.value >= Math.ceil((this.state.total / this.state.perPageCount))) {
+                this.setState({
+                    currentPageNum: Math.ceil((this.state.total / this.state.perPageCount))
+                })
+            } else {
+                this.setState({
+                    currentPageNum: event.target.value
+                })
+            }
         }
 
         //向后台请求数据
@@ -154,11 +160,11 @@ class Table extends React.Component {
                     </table>
 
                     {/*展示是否分页部分*/}
-                    {this.props.config.isPaging ? <div style={{float: "right", width: this.props.config.width}}>
+                    {this.props.config.isPaging ? <div style={{float: "right", width: this.props.config.width, marginTop: "10px"}}>
                         <p style={{float: "right", lineHeight: "30px", margin: "0px"}}>跳转至 <input type="text"
                                                                                                   onBlur={this.breakPageNum}
                                                                                                   style={{
-                                                                                                      width: "25px",
+                                                                                                      width: "30px",
                                                                                                       height: "20px",
                                                                                                       outline: "none",
                                                                                                       border: "1px solid rgb(221,221,221)",

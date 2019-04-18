@@ -1,11 +1,3 @@
-body {
-    margin: 0px;
-    padding: 0px;
-    background-image: url("../../common/background.png");
-    background-color: #b8e5f8;
-    background-size: cover;
-}
-
 .login_form h1 {
     font-size: 70px;
     color: rgb(0, 119, 255);

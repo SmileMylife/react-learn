@@ -6,10 +6,7 @@ import "./login.css"
 import Input from "../input/input";
 import PhoneInput from "../phone_input/phone_input";
 import MsgCodeInput from "../msg-code-input/msg-code-input";
-import logo from "../../common/logo.png"
 import Button from "../button/button";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import ForgetPwd from "../forgetpwd/forgetpwd";
 
 /**
  * 如何引入图片文件，使用import方式即可，或者使用require.js，使用iport方式导入后使用jsx语法解析。
@@ -17,6 +14,7 @@ import ForgetPwd from "../forgetpwd/forgetpwd";
 class Login extends React.Component {
     constructor(props) {
         super(props);
+
         this.switchLoginAndRegister = this.switchLoginAndRegister.bind(this);   //切换登录和注册页面
         this.changeLoginStyle = this.changeLoginStyle.bind(this);   //更改登录方式
         this.getFormData = this.getFormData.bind(this);     //获取表单数据
@@ -293,7 +291,7 @@ class Login extends React.Component {
         return (
             <div>
                 <div className="login_form">
-                    <h1 className="text_align_center"><img src={logo} alt=""/></h1>
+                    <h1 className="text_align_center"><img src="../img/logo.png" alt=""/></h1>
                     <p className="explain_title text_align_center">
                         {showRegister ? <span>注册</span> : <span>登录</span>}知乎，发现更大的世界</p>
                     <div className="login_container">

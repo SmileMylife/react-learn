@@ -1,6 +1,5 @@
 import React from "react"
 import "./logo.css"
-import logo from "../../common/logo.png"
 
 class Logo extends React.Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class Logo extends React.Component {
         return (
             <div>
                 <a href="">
-                    <img src={logo} alt="" width={this.props.width} height={this.props.height} />
+                    <img src={"../img/logo.png`"} alt="" width={this.props.width} height={this.props.height} />
                 </a>
             </div>
         );

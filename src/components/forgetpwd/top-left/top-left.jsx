@@ -1,6 +1,5 @@
 import React from "react"
 import "./top-left.css"
-import logo from "../../../common/logo.png"
 import Logo from "../../logo/logo";
 
 class TopLeft extends React.Component {

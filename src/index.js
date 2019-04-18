@@ -2,15 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {LocaleProvider, DatePicker, message} from 'antd';
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
-import zhCN from 'antd/lib/locale-provider/zh_CN';
-import moment from 'moment';
 import 'moment/locale/zh-cn';
-import "antd/dist/antd.css";
 import "./index.css";
-import {Button} from "antd";
-import Table from "./components/table/Table";
-
-moment.locale('zh-cn');
+import App from "./components/app/app";
 
 /*class App extends React.Component {
     state = {
@@ -44,10 +38,21 @@ moment.locale('zh-cn');
 };*/
 
 const config = {
-    item: [{key: "emp_no", cellName: "员工编码"}, {key: "birth_date", cellName: "生日"}, {
-        key: "first_name",
+    item: [{key: "empNo", cellName: "员工编码"}, {key: "birthDate", cellName: "生日"}, {
+        key: "firstName",
         cellName: "姓"
+    }, {
+        key: "lastName",
+        cellName: "名"
+    }, {
+        key: "gender",
+        cellName: "性别"
+    }, {
+        key: "hireDate",
+        cellName: "录用日期"
     }], width: "800px", url: "/queryEmployees", isPaging: true
 };
 
-ReactDOM.render(<Table config={config}/>, document.getElementById('root'));
+/*ReactDOM.render(<Table config={config}/>, document.getElementById('root'));*/
+
+ReactDOM.render(<App />, document.getElementById('root'));
