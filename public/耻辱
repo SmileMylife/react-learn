@@ -1,0 +1,25 @@
+谨以此记住本次学习的耻辱：
+
+在react-router的使用过程中，因为配置的路由路径不够精确，导致花费了两天时间去找个bug，以下是源码：
+
+
+ReactDOM.render(<BrowserRouter>
+    <Switch>
+        <Route path="/" component={MyApp}></Route>
+        <Route path="/1" component={H2}></Route>
+    </Switch>
+</BrowserRouter>, document.getElementById("root"));
+
+在上述代码中，因为第一个路由的路径为/，所以在myapp里边进行跳转的时候总是跳转不了，app中的跳转路径为/1，路由加载顺序自上而下，首先匹配到的就是/路径，所以出现了无论如何都跳转不了的情况，只见地址栏路径变更，不见组件重新加载，修复方法如下：
+
+ReactDOM.render(<BrowserRouter>
+    <Switch>
+        <Route exact path="/" component={MyApp}></Route>
+        <Route path="/1" component={H2}></Route>
+    </Switch>
+</BrowserRouter>, document.getElementById("root"));
+
+加入exact，精确匹配即可。
+
+
+以上耻辱需铭记于心。。。。。。。

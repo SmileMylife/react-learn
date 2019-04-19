@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {LocaleProvider, DatePicker, message} from 'antd';
+import {Redirect, Route, Link, NavLink, BrowserRouter, HashRouter, Switch} from 'react-router-dom'
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import 'moment/locale/zh-cn';
+
 import "./index.css";
+import MyApp from "./testcomponent/h1/MyApp";
 import App from "./components/app/app";
+import Login from "./components/login/login";
+import H3 from "./testcomponent/h1/H3";
+import TopApp from "./testcomponent/h1/TopApp";
+import H1 from "./testcomponent/h1/H1";
+import H2 from "./testcomponent/h1/H2";
+
 
 /*class App extends React.Component {
     state = {
@@ -55,4 +63,24 @@ const config = {
 
 /*ReactDOM.render(<Table config={config}/>, document.getElementById('root'));*/
 
-ReactDOM.render(<App />, document.getElementById('root'));
+/*
+ReactDOM.render(<BrowserRouter>
+    <Switch>
+        <Route path="/index" component={App}/>
+        <Route path="/loginSuccess" component={Layout}/>
+    </Switch>
+</BrowserRouter>, document.getElementById('root'));*/
+
+/*ReactDOM.render(<BrowserRouter>
+    <Switch>
+        <Route path="/" component={App}/>
+        <Route path="/loginSuccess" component={Layout}/>
+    </Switch>
+</BrowserRouter>, document.getElementById('root'));*/
+
+ReactDOM.render(<BrowserRouter>
+    <Switch>
+        <Route path="/" component={MyApp}></Route>
+        <Route path="/1" component={H2}></Route>
+    </Switch>
+</BrowserRouter>, document.getElementById("root"));

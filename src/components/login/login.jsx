@@ -7,6 +7,7 @@ import Input from "../input/input";
 import PhoneInput from "../phone_input/phone_input";
 import MsgCodeInput from "../msg-code-input/msg-code-input";
 import Button from "../button/button";
+import {createBrowserHistory} from 'history';
 
 /**
  * 如何引入图片文件，使用import方式即可，或者使用require.js，使用iport方式导入后使用jsx语法解析。
@@ -198,7 +199,7 @@ class Login extends React.Component {
                     defaultNoPassMsg: "手机号码不能为空"
                 }
             });
-            return;
+            return false;
         }
 
         if (!checkPhone.test(phoneNumOrEmail) && !checkEmail.test(phoneNumOrEmail)) {
@@ -211,7 +212,7 @@ class Login extends React.Component {
                     defaultNoPassMsg: "输入手机号或邮箱"
                 }
             });
-            return;
+            return false;
         }
 
         if ("login" == style) {
@@ -224,7 +225,7 @@ class Login extends React.Component {
                         defaultNoPassMsg: "请输入密码"
                     }
                 });
-                return;
+                return false;
             }
         } else if ("register" == style) {
             if (!msgCodeOrPwd) {
@@ -236,7 +237,7 @@ class Login extends React.Component {
                         defaultNoPassMsg: "短信验证码不能为空"
                     }
                 });
-                return;
+                return false;
             }
             if (msgCodeOrPwd.length !== 6) {
                 this.setState({
@@ -248,7 +249,7 @@ class Login extends React.Component {
                         defaultNoPassMsg: "短信验证码不能为空"
                     }
                 });
-                return;
+                return false;
             }
         }
 
@@ -257,16 +258,28 @@ class Login extends React.Component {
 
     //登录
     login() {
-        this.loginOrRegisterCheck("login");
-        var formData = new FormData();
-        formData.append("username", "zhanpgei");
-        formData.append("password", "123");
-        var url = "http://127.0.0.1:8080/login";
-        fetch(url, {
-            body: formData, // must match 'Content-Type' header
-            method: 'POST',
-        })
+        var checkResult = this.loginOrRegisterCheck("login");
+        if (checkResult) {
+            var formData = new FormData();
+            formData.append("username", "zhanpgei");
+            formData.append("password", "123");
+            fetch("/login", {
+                body: formData,
+                method: 'POST',
+            }).then(function(resp) {
+                return resp.json();
+            }).then(function(resultJson) {
+                console.log(resultJson);
+                if (resultJson && resultJson.rtnCode == 0) {
+                    var history = createBrowserHistory();
+                    history.push("/loginSuccess");
+                }
+            }).catch(function(e) {
+                console.log(e);
+            })
+        }
     }
+
 
     //注册
     register() {
