@@ -7,7 +7,7 @@ import Input from "../input/input";
 import PhoneInput from "../phone_input/phone_input";
 import MsgCodeInput from "../msg-code-input/msg-code-input";
 import Button from "../button/button";
-import {createBrowserHistory} from 'history';
+import {Link} from 'react-router-dom';
 
 /**
  * 如何引入图片文件，使用import方式即可，或者使用require.js，使用iport方式导入后使用jsx语法解析。
@@ -259,6 +259,7 @@ class Login extends React.Component {
     //登录
     login() {
         var checkResult = this.loginOrRegisterCheck("login");
+        var _this = this;
         if (checkResult) {
             var formData = new FormData();
             formData.append("username", "zhanpgei");
@@ -266,15 +267,15 @@ class Login extends React.Component {
             fetch("/login", {
                 body: formData,
                 method: 'POST',
-            }).then(function(resp) {
+            }).then(function (resp) {
                 return resp.json();
-            }).then(function(resultJson) {
-                console.log(resultJson);
+            }).then(function (resultJson) {
                 if (resultJson && resultJson.rtnCode == 0) {
-                    var history = createBrowserHistory();
-                    history.push("/loginSuccess");
+                    // var history = createBrowserHistory();
+                    _this.props.history.push("/loginSuccess");
+                    debugger;
                 }
-            }).catch(function(e) {
+            }).catch(function (e) {
                 console.log(e);
             })
         }
@@ -302,7 +303,7 @@ class Login extends React.Component {
         const showRegister = this.state.showRegister;
         const msgLogin = this.state.msgLogin;
         return (
-            <div>
+            <div className="login_background_page">
                 <div className="login_form">
                     <h1 className="text_align_center"><img src="../img/logo.png" alt=""/></h1>
                     <p className="explain_title text_align_center">
@@ -313,7 +314,8 @@ class Login extends React.Component {
                             {
                                 (showRegister || msgLogin) ?
                                     <PhoneInput id="phoneNumOrEmail" getData={this.getFormData}
-                                                value={this.state.phoneNumOrEmailValue} showPlaceholder={this.showPlaceholder}
+                                                value={this.state.phoneNumOrEmailValue}
+                                                showPlaceholder={this.showPlaceholder}
                                                 checkResult={this.state.phoneNumOrEmailCheckResult}/> :
                                     <Input id="phoneNumOrEmail" getData={this.getFormData} type="text" isRequired={true}
                                            placeholder="手机号或邮箱" checkResult={this.state.phoneNumOrEmailCheckResult}
@@ -350,7 +352,7 @@ class Login extends React.Component {
                             <div className="float_right">
                                 {(showRegister || msgLogin) ?
                                     <a href="javascript:void(0)" className="forgetPwd">接收语音验证码</a> :
-                                    <a href="/forgetPwd" className="forgetPwd">忘记密码？</a>}
+                                    <Link to="/forgetPwd" className="forgetPwd">忘记密码？</Link>}
                             </div>
                         </div>
 

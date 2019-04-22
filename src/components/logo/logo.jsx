@@ -4,17 +4,13 @@ import "./logo.css"
 class Logo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
+        this.state = {}
     }
 
     render() {
         return (
             <div>
-                <a href="">
-                    <img src={"../img/logo.png`"} alt="" width={this.props.width} height={this.props.height} />
-                </a>
+                <img src={"../img/logo.png`"} alt="" width={this.props.width} height={this.props.height}/>
             </div>
         );
     }

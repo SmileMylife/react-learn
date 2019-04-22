@@ -12,6 +12,7 @@ import H3 from "./testcomponent/h1/H3";
 import TopApp from "./testcomponent/h1/TopApp";
 import H1 from "./testcomponent/h1/H1";
 import H2 from "./testcomponent/h1/H2";
+import ForgetPwd from "./components/forgetpwd/forgetpwd";
 
 
 /*class App extends React.Component {
@@ -80,7 +81,7 @@ ReactDOM.render(<BrowserRouter>
 
 ReactDOM.render(<BrowserRouter>
     <Switch>
-        <Route path="/" component={MyApp}></Route>
-        <Route path="/1" component={H2}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/forgetPwd" component={ForgetPwd}></Route>
     </Switch>
 </BrowserRouter>, document.getElementById("root"));

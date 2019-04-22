@@ -36,7 +36,7 @@ class Input extends React.Component {
     //显示占位符
     showPlaceholder() {
         var checkResult = this.state.checkResult;
-        checkResult.noPassMsg = this.props.checkResult.defaultNoPassMsg;
+        checkResult.noPassMsg = this.props.checkResult.defaultNoPassMsg.toString();
         checkResult.status = true;
         this.setState({
             checkResult: checkResult
@@ -61,6 +61,7 @@ class Input extends React.Component {
                 <div style={{width: this.props.width}} className={this.props.needUnderline ? "underline" : null}>
                     <input name={this.props.id} type={this.props.type ? this.props.type : "text"}
                            value={this.props.value ? this.props.value : ""}
+                           defaultValue=""
                            placeholder={this.state.checkResult.status ? this.state.checkResult.passMsg : this.state.checkResult.noPassMsg}
                            onFocus={this.showPlaceholder} onBlur={this.requireCheck}
                            className={`${classname} ${checkClass}`} onChange={this.props.getData} />
