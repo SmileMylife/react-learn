@@ -13,6 +13,9 @@ import TopApp from "./testcomponent/h1/TopApp";
 import H1 from "./testcomponent/h1/H1";
 import H2 from "./testcomponent/h1/H2";
 import ForgetPwd from "./components/forgetpwd/forgetpwd";
+import {createStore} from 'redux';
+import ReduxDemo from "./testcomponent/redux/reduxDemo";
+import {addNumReduce} from './testcomponent/redux/reduces';
 
 
 /*class App extends React.Component {
@@ -79,9 +82,28 @@ ReactDOM.render(<BrowserRouter>
     </Switch>
 </BrowserRouter>, document.getElementById('root'));*/
 
-ReactDOM.render(<BrowserRouter>
+/*ReactDOM.render(<BrowserRouter>
     <Switch>
         <Route path="/login" component={Login}></Route>
         <Route path="/forgetPwd" component={ForgetPwd}></Route>
     </Switch>
-</BrowserRouter>, document.getElementById("root"));
+</BrowserRouter>, document.getElementById("root"));*/
+
+
+var store = createStore(addNumReduce);
+
+console.log("获取当前state：", store.getState());
+
+var obj = {
+    store: store,
+    prop1: "哈哈",
+    prop2: "啦啦"
+};
+
+function renderMe() {
+    ReactDOM.render(<ReduxDemo {...obj} />, document.getElementById("root"));
+}
+
+renderMe();
+
+store.subscribe(renderMe);
