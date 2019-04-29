@@ -98,7 +98,7 @@ console.log("获取当前state：", myStore.getState());
 
 function renderMe() {
     ReactDOM.render(<Provider store={myStore}>
-        <Test myTest="test组件自带属性"/>
+        <ReduxDemo addProps = "这是我自带属性"/>
     </Provider>, document.getElementById("root"));
 }
 

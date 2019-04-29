@@ -1,7 +1,7 @@
 /*
   包含多个reduce函数的模块
  */
-import {ADD, ODD_INCREASE, DECREASE, CHANGE_VALUE} from './action_types';
+import {ADD, ODD_INCREASE, DECREASE, CHANGE_VALUE, TIMEOUT} from './action_types';
 
 
 const initState = {
@@ -13,6 +13,7 @@ const initState = {
 export function addNumReduce(state = initState, action) {
     switch (action.type) {
         case ADD:
+            console.log("点击了添加之后：", action);
             return Object.assign({}, state, {num: state.num + state.selectValue});
         case DECREASE:
             return Object.assign({}, state, {num: state.num - state.selectValue});
@@ -24,6 +25,10 @@ export function addNumReduce(state = initState, action) {
             }
         case CHANGE_VALUE:
             return changeSelectValue(state, action);
+        case TIMEOUT:
+            return Object.assign({}, state, {
+                num: state.num + state.selectValue
+            });
         default:
             return state;
     }
