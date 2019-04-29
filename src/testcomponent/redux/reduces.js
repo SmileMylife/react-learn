@@ -6,7 +6,8 @@ import {ADD, ODD_INCREASE, DECREASE, CHANGE_VALUE} from './action_types';
 
 const initState = {
     num: 0,
-    selectValue: 1
+    selectValue: 1,
+    text: "test组件文本内容"
 };
 
 export function addNumReduce(state = initState, action) {

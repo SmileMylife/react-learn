@@ -16,6 +16,8 @@ import ForgetPwd from "./components/forgetpwd/forgetpwd";
 import {createStore} from 'redux';
 import ReduxDemo from "./testcomponent/redux/reduxDemo";
 import {addNumReduce} from './testcomponent/redux/reduces';
+import {Provider} from 'react-redux';
+import Test from "./testcomponent/redux/Test";
 
 
 /*class App extends React.Component {
@@ -90,20 +92,16 @@ ReactDOM.render(<BrowserRouter>
 </BrowserRouter>, document.getElementById("root"));*/
 
 
-var store = createStore(addNumReduce);
+var myStore = createStore(addNumReduce);
 
-console.log("获取当前state：", store.getState());
-
-var obj = {
-    store: store,
-    prop1: "哈哈",
-    prop2: "啦啦"
-};
+console.log("获取当前state：", myStore.getState());
 
 function renderMe() {
-    ReactDOM.render(<ReduxDemo {...obj} />, document.getElementById("root"));
+    ReactDOM.render(<Provider store={myStore}>
+        <Test myTest="test组件自带属性"/>
+    </Provider>, document.getElementById("root"));
 }
 
 renderMe();
 
-store.subscribe(renderMe);
+myStore.subscribe(renderMe);

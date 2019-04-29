@@ -1,5 +1,6 @@
 import React from "react"
 import {ADD, DECREASE, ODD_INCREASE, CHANGE_VALUE} from './action_types';
+import {connect} from 'react-redux';
 
 class ReduxDemo extends React.Component {
 
@@ -60,4 +61,4 @@ class ReduxDemo extends React.Component {
     }
 }
 
-export default ReduxDemo;
+export default connect()(ReduxDemo);
