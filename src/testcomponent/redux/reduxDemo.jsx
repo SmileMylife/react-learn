@@ -27,12 +27,15 @@ class ReduxDemo extends React.Component {
 
     //减去数字
     decreaseNum = () => {
-        this.props.jian(this.props.selectValue);
+        // this.props.jian(this.props.selectValue); //这种形式不能调用减去方法，因为没有相应的actionCreator
+        this.props.decrease(this.props.selectValue);    //自动调dispatch方法
+
     };
 
     //奇数添加
     oddAdd = () => {
-        this.props.jijia(this.props.selectValue);
+        // this.props.jijia(this.props.selectValue);
+        this.props.oddIncrease(this.props.selectValue);
     };
 
     //延时添加
@@ -46,7 +49,7 @@ class ReduxDemo extends React.Component {
     getSelectValue = (event) => {
         if (event.target) {
             let value = event.target.value;
-            this.props.change(value);
+            this.props.changeValue(value);
         }
     };
 

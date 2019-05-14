@@ -94,8 +94,6 @@ ReactDOM.render(<BrowserRouter>
 
 var myStore = createStore(addNumReduce);
 
-console.log("获取当前state：", myStore.getState());
-
 function renderMe() {
     ReactDOM.render(<Provider store={myStore}>
         <ReduxDemo addProps = "这是我自带属性"/>
@@ -103,5 +101,6 @@ function renderMe() {
 }
 
 renderMe();
-
 myStore.subscribe(renderMe);
+
+console.log("获取当前state：", myStore.getState());

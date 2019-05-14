@@ -7,7 +7,8 @@ import {ADD, ODD_INCREASE, DECREASE, CHANGE_VALUE, TIMEOUT} from './action_types
 const initState = {
     num: 0,
     selectValue: 1,
-    text: "test组件文本内容"
+    text: "test组件文本内容",
+    tree: "这是state树，调用完store.createStore之后会构造这个state树"
 };
 
 export function addNumReduce(state = initState, action) {
