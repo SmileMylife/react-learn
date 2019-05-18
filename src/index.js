@@ -18,6 +18,7 @@ import ReduxDemo from "./testcomponent/redux/reduxDemo";
 import {addNumReduce} from './testcomponent/redux/reduces';
 import {Provider} from 'react-redux';
 import Test from "./testcomponent/redux/Test";
+import Table from "./components/table/Table";
 
 
 /*class App extends React.Component {
@@ -67,7 +68,7 @@ const config = {
     }], width: "800px", url: "/queryEmployees", isPaging: true
 };
 
-/*ReactDOM.render(<Table config={config}/>, document.getElementById('root'));*/
+ReactDOM.render(<Table config={config}/>, document.getElementById('root'));
 
 /*
 ReactDOM.render(<BrowserRouter>
@@ -91,8 +92,9 @@ ReactDOM.render(<BrowserRouter>
     </Switch>
 </BrowserRouter>, document.getElementById("root"));*/
 
+//redux使用
 
-var myStore = createStore(addNumReduce);
+/*var myStore = createStore(addNumReduce);
 
 function renderMe() {
     ReactDOM.render(<Provider store={myStore}>
@@ -103,4 +105,4 @@ function renderMe() {
 renderMe();
 myStore.subscribe(renderMe);
 
-console.log("获取当前state：", myStore.getState());
+console.log("获取当前state：", myStore.getState());*/

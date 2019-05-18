@@ -36,6 +36,9 @@ class Table extends React.Component {
 
     //点击下一页
     nextPageNum = () => {
+        if (Math.ceil((this.state.total / this.state.perPageCount)) === 0) {
+            return ;
+        }
         this.setState((prevState, props) => {
                 if (prevState.currentPageNum >= (Math.floor(prevState.data.total / prevState.perPageCount) + 1)) {
                     return {
@@ -52,6 +55,9 @@ class Table extends React.Component {
 
     //点击上一页
     prePageNum = () => {
+        if (Math.ceil((this.state.total / this.state.perPageCount)) === 0) {
+            return ;
+        }
         this.setState((prevState, props) => {
             if (prevState.currentPageNum <= 1) {
                 return {
