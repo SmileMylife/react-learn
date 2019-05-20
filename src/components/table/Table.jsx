@@ -42,11 +42,11 @@ class Table extends React.Component {
         this.setState((prevState, props) => {
                 if (prevState.currentPageNum >= (Math.floor(prevState.data.total / prevState.perPageCount) + 1)) {
                     return {
-                        currentPageNum: prevState.currentPageNum
+                        currentPageNum: parseInt(prevState.currentPageNum)
                     }
                 } else {
                     return {
-                        currentPageNum: prevState.currentPageNum + 1
+                        currentPageNum: parseInt(prevState.currentPageNum + 1)
                     }
                 }
             }
@@ -65,7 +65,7 @@ class Table extends React.Component {
                 }
             } else {
                 return {
-                    currentPageNum: prevState.currentPageNum - 1
+                    currentPageNum: parseInt(prevState.currentPageNum - 1)
                 }
             }
         });
@@ -79,7 +79,7 @@ class Table extends React.Component {
             });
 
             //重新请求后台数据
-            // this.getTableData();
+            this.getTableData();
         }
     };
 
@@ -92,7 +92,7 @@ class Table extends React.Component {
                 })
             } else {
                 this.setState({
-                    currentPageNum: event.target.value
+                    currentPageNum: parseInt(event.target.value)
                 })
             }
         }
@@ -107,14 +107,14 @@ class Table extends React.Component {
         if (!this.props.config.url) {
             return;
         }
-
-        //请求后台
         let _this = this;
         var formData = new FormData();
         formData.append("start", ((this.state.currentPageNum - 1) * this.state.perPageCount).toString());
         formData.append("limit", this.state.perPageCount.toString());
         fetch(this.props.config.url, {
             body: formData,
+
+            //请求后台
             method: "POST",
         }).then(function (resp) {
             return resp.json();
