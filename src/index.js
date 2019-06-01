@@ -19,6 +19,7 @@ import {addNumReduce} from './testcomponent/redux/reduces';
 import {Provider} from 'react-redux';
 import Test from "./testcomponent/redux/Test";
 import Table from "./components/table/Table";
+import RefTest from "./testcomponent/ref-test/RefTest";
 
 
 /*class App extends React.Component {
@@ -68,7 +69,8 @@ const config = {
     }], width: "800px", url: "/queryEmployees", isPaging: true
 };
 
-ReactDOM.render(<Table config={config}/>, document.getElementById('root'));
+// ReactDOM.render(<Table config={config}/>, document.getElementById('root'));
+ReactDOM.render(<RefTest />, document.getElementById('root'));
 
 /*
 ReactDOM.render(<BrowserRouter>
