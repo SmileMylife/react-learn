@@ -1,0 +1,32 @@
+.pop_box_wrap {
+    width: 500px;
+    height: 300px;
+    margin: 30px auto;
+    border: 1px solid black;
+}
+
+.pop_box_wrap a {
+    display: block;
+    width: 40px;
+    height: 30px;
+    border: 1px solid deepskyblue;
+    text-align: center;
+    border-radius: 3px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.pop_box_wrap a.left {
+    float: left;
+    margin-left: 50px;
+}
+
+.pop_box_wrap a.right {
+    float: right;
+    margin-right: 50px;
+}
+
+.pop_box_wrap h4 {
+    text-align: center;
+    margin-bottom: 100px;
+}

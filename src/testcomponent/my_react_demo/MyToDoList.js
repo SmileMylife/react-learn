@@ -16,11 +16,13 @@ class MyToDoList extends React.Component {
         })*/
 
         //点击提交按钮，通过redux
-        const submit = {
+        /*const submit = {
             type: "submit",
             data: this.props.inputData
         };
-        this.props.dispatch(submit);
+        this.props.dispatch(submit);*/
+
+        this.props.submit(this.props.inputData);
     };
 
     getInputData = (e) => {
@@ -34,11 +36,13 @@ class MyToDoList extends React.Component {
         })*/
 
         //通过redux获取输入值
-        const blur = {
+        /*const blur = {
             type: "blur",
             data: value
         };
-        this.props.dispatch(blur);
+        this.props.dispatch(blur);*/
+
+        this.props.blur(value);
     };
     render() {
         console.log(this.props);
@@ -58,7 +62,24 @@ class MyToDoList extends React.Component {
     }
 }
 
-export default connect((state, ownProps) => {
+export default connect((mapStateToProps, ownProps) => {
     console.log("加载redux管理的state");
-    return state;
+    return mapStateToProps;
+}, (dispatch, ownProps) => {
+    return {
+        submit: (data) => {
+            //异步请求
+
+            dispatch({
+                type: "submit",
+                data: data
+            })
+        },
+        blur: (data) => {
+            dispatch({
+                type: "blur",
+                data: data
+            })
+        }
+    }
 })(MyToDoList);
