@@ -1,0 +1,11 @@
+将以上内容总结如下：
+
+1.首先，使用react-redux时，如果connect函数不传递第一个参数，则this.props中只会存在一个dispatch函数，其他状态相关内容并不会传递至this.props中。
+
+2.使用react-redux的流程是，首先会执行connect()前半部分，该部分是将store管理的state和actionCreator相关函数分离出来，然后在调用后半部分connect()(component)时，将其与组件关联起来。
+
+3.在mapStateToProps函数中，如果返回的属性是新增属性，则该属性只会出现在该组件中，所以对于非公共类state，最好存于组件本身。
+
+4.mapDispatchToProps既可以传递函数也可以传递对象，如果传递对象，则对象的属性值为actionCreator函数（可将业务数据传递过来），因为在组件内部使用this.props.addInfo时，会返回一个函数，该函数的方法体是dispatch(action)函数，即自动执行dispatch。
+
+5.综上，react-redux其实就是将state对象和dispatch的执行动作简化了。

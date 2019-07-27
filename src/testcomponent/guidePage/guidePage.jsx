@@ -42,7 +42,7 @@ class GuidePage extends React.Component {
     render() {
         return (
             <div className="pop_box_wrap">
-                <div style={this.state.firstDealFlag ? {display: "block"} : {display: "none"}}>
+                <div style={this.state.firstDealFlag ? {display: "block"} : {display: "none"}} className="">
                     <h4>您好,您将要反映的问题是否已经通过10086或其他渠道首次处理过？</h4>
                     <a className="left" onClick={this.firstDealClickYes}>是</a>
                     <a className="right" onClick={this.firstDealClickNo}>否</a>
