@@ -43,7 +43,6 @@ var mapStateToProps = (state, ownProps) => {
     });
 };
 
-combineReducers()
 
 //该对象属性对应的方法名其实都是actionCreator函数
 var mapDispatchToProps = {

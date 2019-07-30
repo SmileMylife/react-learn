@@ -11,7 +11,8 @@ import ReduxApp from "./testcomponent/goOverRedux/onlyRedux/ReduxApp";
 import ReduxTestReducer from "./testcomponent/goOverRedux/onlyRedux/ReduxTestReducer";
 import ReactReduxTestReducer from "./testcomponent/goOverRedux/reactRedux/ReactReduxTestReducer"
 import ReactReduxApp from "./testcomponent/goOverRedux/reactRedux/ReactReduxApp";
-import myReducers from "./testcomponent/goOverRedux/reactRedux/reducers/combineReducers";
+import App from "./testcomponent/reactReduxDemoByGuanFang/components/App";
+import myReducers from "./testcomponent/reactReduxDemoByGuanFang/reducers/index";
 /*import App from "./testcomponent/my_react_demo/App";
 import {createStore} from "redux";
 import { MyReduce } from "./testcomponent/my_react_demo/MyReduce";
@@ -80,6 +81,7 @@ console.log(myReducers);
 
 var store = createStore(myReducers);
 
+
 //使用redux进行管理
 /*function renderMe() {
     ReactDOM.render(<ReduxApp store={store} />, document.getElementById("root"));
@@ -91,7 +93,7 @@ store.subscribe(renderMe);*/
 //使用react-redux进行管理
 
 ReactDOM.render(<Provider store={store}>
-    <ReactReduxApp/>
+    <App/>
 </Provider>, document.getElementById("root"));
 
 // ReactDOM.render(<ReduxApp/>, document.getElementById("root"));
