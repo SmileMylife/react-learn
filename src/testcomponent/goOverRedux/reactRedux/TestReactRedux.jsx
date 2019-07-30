@@ -14,16 +14,16 @@ class TestReactRedux extends React.Component {
     };
 
     addInfoToRedux = () => {
-        this.props.addInfo(this.props.inputValue);
+        console.log("点击了添加按钮后的props", this.props);
+        this.props.addInfo(this.props.updateInputReducer.inputValue);
     };
 
     render() {
-        console.log("组件render时调用", this.props.newDispatch);
         console.log("TestReactRedux组件自带的state", this.state);
         console.log("TestReactRedux组件被store对象管理的state", this.props);
         return(
             <div>
-                <h3>这是通过redux来管理的state对象展示出来的值，{this.props.showInfo}</h3>
+                <h3>这是通过redux来管理的state对象展示出来的值，{this.props.addInfoReducer.showInfo}</h3>
                 <input onChange={this.getInputValueByRedux} placeholder={"通过redux添加信息"}/>
                 <button onClick={this.addInfoToRedux}>redux添加</button>
             </div>
@@ -43,6 +43,7 @@ var mapStateToProps = (state, ownProps) => {
     });
 };
 
+combineReducers()
 
 //该对象属性对应的方法名其实都是actionCreator函数
 var mapDispatchToProps = {

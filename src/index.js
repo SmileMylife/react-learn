@@ -76,6 +76,7 @@ ReactDOM.render(<Modal title="信息填写">
 ReactDOM.render(<Provider store={store}>
     <ReduxDemo/>
 </Provider>, document.getElementById("root"));*/
+console.log(myReducers);
 
 var store = createStore(myReducers);
 
