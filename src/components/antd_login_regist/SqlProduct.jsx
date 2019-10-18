@@ -55,7 +55,7 @@ class SqlProduct extends React.Component {
         //提交按钮布局
         const subBtnLayout = {
             wrapperCol: {
-                span: 4,
+                span: 5,
                 offset: 10
             }
         };
@@ -135,7 +135,7 @@ class SqlProduct extends React.Component {
 
                     <Form.Item label="任务编号">
                         {getFieldDecorator('jira', {
-                            rules: [{required: true, message: '请选择姓名拼音！'}],
+                            rules: [{required: true, message: '请选择任务编号！'}],
                         })(<Input/>)}
                     </Form.Item>
 
@@ -152,7 +152,7 @@ class SqlProduct extends React.Component {
 
                     <Form.Item label="中文姓名">
                         {getFieldDecorator('connUsername', {
-                            rules: [{required: true, message: '请选择姓名拼音！'}],
+                            rules: [{required: true, message: '请选择中文姓名！'}],
                         })(<Input/>)}
                     </Form.Item>
 
@@ -162,16 +162,14 @@ class SqlProduct extends React.Component {
                         })(<Input addonBefore={prefixSelector} style={{width: '100%'}}/>)}
                     </Form.Item>
 
-                    <Form.Item {...sqlItemLayout} label="sql语句" style={{textAlign: "center"}}>
+                    <Form.Item {...sqlItemLayout} label="sql语句">
                         {getFieldDecorator('sql', {
                             rules: [{required: true, message: '请输入sql语句！'}],
                         })(<TextArea rows={6}/>)}
                     </Form.Item>
 
                     <Form.Item {...subBtnLayout}>
-                        <Button type="primary" className={"login-form-button"}>
-                            提交
-                        </Button>
+                        <Button type="primary" className={"login-form-button"}>提交</Button>
                     </Form.Item>
                 </Form>
             </Fragment>

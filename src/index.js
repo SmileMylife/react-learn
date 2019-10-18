@@ -7,6 +7,8 @@ import myReducers from "./testcomponent/reactReduxDemoByGuanFang/reducers/index"
 import {SqlProductForm} from "./components/antd_login_regist/SqlProduct";
 import {ConfigProvider} from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
+import {WrappedRegistrationForm} from "./components/antd_login_regist/RegistrationForm";
+import {WrappedNormalLoginForm} from "./components/antd_login_regist/LoginForm";
 // import moment from "moment";
 /*import App from "./testcomponent/my_react_demo/App";
 import {createStore} from "redux";
