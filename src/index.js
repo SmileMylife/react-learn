@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import ReduxDemo from "./testcomponent/redux/reduxDemo";
-import Model from "./testcomponent/model/Model";
-import IndexApp from "./testcomponent/indexApp/IndexApp";
-import {Provider} from "react-redux";
-import {addNumReduce} from "./testcomponent/redux/reduces";
+import "./index.css";
 import {createStore} from "redux";
-import ReduxApp from "./testcomponent/goOverRedux/onlyRedux/ReduxApp";
-import ReduxTestReducer from "./testcomponent/goOverRedux/onlyRedux/ReduxTestReducer";
-import ReactReduxTestReducer from "./testcomponent/goOverRedux/reactRedux/ReactReduxTestReducer"
-import ReactReduxApp from "./testcomponent/goOverRedux/reactRedux/ReactReduxApp";
-import App from "./testcomponent/reactReduxDemoByGuanFang/components/App";
 import myReducers from "./testcomponent/reactReduxDemoByGuanFang/reducers/index";
+import {SqlProductForm} from "./components/antd_login_regist/SqlProduct";
+import {ConfigProvider} from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+// import moment from "moment";
 /*import App from "./testcomponent/my_react_demo/App";
 import {createStore} from "redux";
 import { MyReduce } from "./testcomponent/my_react_demo/MyReduce";
@@ -21,7 +16,7 @@ import { applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import GuidePage from "./testcomponent/guidePage/guidePage";
 import MyToDoList from "./testcomponent/my_react_demo/MyToDoList";
-import { Modal } from "antd";
+import { Modal, Row, Col } from "antd";
 
 
 /!*
@@ -68,8 +63,6 @@ ReactDOM.render(<Modal title="信息填写">
 </Modal>, document.getElementById("root"));*/
 
 
-
-
 // ReactDOM.render(<IndexApp/>, document.getElementById("root"));
 
 /*var store = createStore(addNumReduce);
@@ -91,10 +84,47 @@ renderMe();
 store.subscribe(renderMe);*/
 
 //使用react-redux进行管理
+const config = {
+    item: [{key: "empNo", cellName: "员工编码"}, {key: "birthDate", cellName: "生日"}, {
+        key: "firstName",
+        cellName: "姓"
+    }, {
+        key: "lastName",
+        cellName: "名"
+    }, {
+        key: "gender",
+        cellName: "性别"
+    }, {
+        key: "hireDate",
+        cellName: "录用日期"
+    }], width: "800px", url: "/queryEmployees", isPaging: true
+};
 
-ReactDOM.render(<Provider store={store}>
-    <App/>
-</Provider>, document.getElementById("root"));
+// moment.locale('zh-cn');
+
+// ReactDOM.render(<Table config={config}/>, document.getElementById('root'));
+ReactDOM.render(
+    <ConfigProvider locale={zhCN}>
+        <SqlProductForm/>
+    </ConfigProvider>
+    , document.getElementById("root"));
+
+
+/*ReactDOM.render(
+    <Row>
+        <Col className={"test"} xs={{ span: 1, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+            Col
+        </Col>
+        <Col className={"test"} xs={{ span: 1, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+            Col
+        </Col>
+        <Col className={"test"} xs={{ span: 1, offset: 1 }} lg={{ span: 6, offset: 2 }}>
+            Col
+        </Col>
+    </Row>,
+    document.getElementById('root'),
+);*/
+
 
 // ReactDOM.render(<ReduxApp/>, document.getElementById("root"));
 

@@ -40,3 +40,7 @@
     border: none;
     outline-style: none;
 }
+
+.test {
+    background-color: red;
+}
