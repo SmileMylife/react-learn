@@ -11,3 +11,21 @@
 .login-form .ant-row {
     margin-bottom: 15px;
 }
+
+/*布局组件样式*/
+.ant-layout {
+    height: 100%;
+}
+
+/*logo部位样式*/
+.logo {
+    width: 172px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 28px 16px 0;
+    float: left;
+}
+
+tr {
+    text-align: center;
+}
