@@ -1,5 +1,5 @@
 import {Menu, Icon} from 'antd';
-import React, { Fragment } from "react";
+import React, {Fragment} from "react";
 import "../antd_login_regist/login.css";
 
 const {SubMenu} = Menu;
@@ -17,9 +17,10 @@ class HeaderMenu extends React.Component {
     };
 
     render() {
+        let url = process.env.PUBLIC_URL + '/img/cmos_logo.png';
         return (
             <Fragment>
-                <div className="logo"/>
+                <div className="logo" style={{background: `url(${url})`, backgroundSize: "cover"}}/>
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal"
                       style={{lineHeight: '64px'}}>
                     <Menu.Item key="mail">

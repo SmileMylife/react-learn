@@ -1,6 +1,6 @@
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
 import "./login.css";
-import React from "react";
+import React, {Fragment} from "react";
 
 class NormalLoginForm extends React.Component {
     handleSubmit = e => {
@@ -26,15 +26,17 @@ class NormalLoginForm extends React.Component {
 
     render() {
         const {getFieldDecorator} = this.props.form;
+        let url = process.env.PUBLIC_URL + '/img/cmos_logo.png';
         return (
             <Form onSubmit={this.handleSubmit} className="login-form">
+                <div className={"logo login-logo"} style={{background: `url(${url})`, backgroundSize: "cover"}}/>
                 <Form.Item>
                     {getFieldDecorator('username', {
                         rules: [{required: true, message: '请输入用户名'}],
                     })(
                         <Input
                             prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                            placeholder="Username"
+                            placeholder="用户名"
                         />,
                     )}
                 </Form.Item>
@@ -45,7 +47,7 @@ class NormalLoginForm extends React.Component {
                         <Input
                             prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                             type="password"
-                            placeholder="Password"
+                            placeholder="密码"
                         />,
                     )}
                 </Form.Item>

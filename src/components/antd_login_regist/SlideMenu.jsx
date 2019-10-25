@@ -58,7 +58,7 @@ class SlideMenu extends React.Component {
                     >
                         <Menu.Item key="9">选项 9</Menu.Item>
                         <Menu.Item key="10">选项 10</Menu.Item>
-                        <SubMenu key="sub3" title="Submenu">
+                        <SubMenu key="sub3" title="子菜单">
                             <Menu.Item key="11">选项 11</Menu.Item>
                             <Menu.Item key="12">选项 12</Menu.Item>
                         </SubMenu>
