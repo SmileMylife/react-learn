@@ -5,11 +5,13 @@ import SlideMenu from "./SlideMenu";
 import {Menu} from "antd/lib/index";
 import HeaderMenu from "./HeaderMenu";
 import ResizeTable from "./ResizeTable";
+import {Link, Route} from "react-router-dom";
+import {SqlProductForm} from "./SqlProduct";
 
 const {Header, Footer, Sider, Content} = Layout;  //布局组件
 const {SubMenu} = Menu;
 
-class LayOut extends Component {
+class AppLayOut extends Component {
 
     state = {
         collapsed: false
@@ -42,13 +44,12 @@ class LayOut extends Component {
                         {/*</Breadcrumb>*/}
                         <Content
                             style={{
-                                background: '#fff',
                                 padding: "24px 24px 0px 24px",
                                 margin: 0,
                                 minHeight: 280,
-                            }}
-                        >
-                            <ResizeTable />
+                            }}>
+                            <Route path="/log/sqlProduct" component={SqlProductForm}/>
+                            <Route path="/log/showData" component={ResizeTable}/>
                         </Content>
                     </Layout>
                 </Layout>
@@ -57,4 +58,4 @@ class LayOut extends Component {
     }
 }
 
-export default LayOut;
+export default AppLayOut;

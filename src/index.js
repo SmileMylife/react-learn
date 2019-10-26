@@ -9,10 +9,9 @@ import {ConfigProvider} from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import {WrappedRegistrationForm} from "./components/antd_login_regist/RegistrationForm";
 import {WrappedNormalLoginForm} from "./components/antd_login_regist/LoginForm";
-import Layout from "antd/es/layout/layout";
-import LayOut from "./components/antd_login_regist/LayOut";
 import SlideMenu from "./components/antd_login_regist/SlideMenu";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import AppLayOut from "./components/antd_login_regist/AppLayOut";
 // import moment from "moment";
 /*import App from "./testcomponent/my_react_demo/App";
 import {createStore} from "redux";
@@ -118,8 +117,10 @@ const config = {
 ReactDOM.render(
     <BrowserRouter>
         <ConfigProvider locale={zhCN}>
-            <Route exact path="/" component={WrappedNormalLoginForm}/>
-            <Route exact path="/log" component={Layout}/>
+            <Switch>
+                <Route exact path={"/index"} component={WrappedNormalLoginForm}/>
+                <Route path={"/log"} component={AppLayOut}/>
+            </Switch>
         </ConfigProvider>
     </BrowserRouter>
     , document.getElementById("root"));

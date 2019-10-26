@@ -1,5 +1,6 @@
 import {Menu, Icon, Button} from 'antd';
 import React from "react";
+import {Link} from "react-router-dom";
 
 const {SubMenu} = Menu;
 
@@ -22,8 +23,12 @@ class SlideMenu extends React.Component {
                         <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}/>
                     </Button>
                     <Menu.Item key="1">
-                        <Icon type="pie-chart"/>
-                        <span>选项 1</span>
+                        <Link to="/log/sqlProduct">
+                            <span>
+                                <Icon type="pie-chart"/>
+                                <span>脚本生成工具</span>
+                            </span>
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="2">
                         <Icon type="desktop"/>

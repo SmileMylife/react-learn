@@ -30,7 +30,7 @@ const subBtnLayout = {
 
 const formItemLayout = {
     labelCol: {span: 2, offset: 8},
-    wrapperCol: {span: 4, offset: 1},
+    wrapperCol: {span: 5, offset: 1},
 };
 
 
@@ -87,7 +87,7 @@ class SqlProduct extends React.Component {
         return (
             <Fragment>
                 <Title level={3} style={{textAlign: "center"}}>SQL脚本生成工具</Title>
-                <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form" layout={"horizontal"}>
+                <Form {...formItemLayout} onSubmit={this.handleSubmit} className="sql-product-form" layout={"horizontal"}>
                     <Form.Item label="操作类型">
                         {getFieldDecorator('gender', {
                             rules: [{required: true, message: '请选择操作类型！'}],
@@ -171,7 +171,7 @@ class SqlProduct extends React.Component {
                     <Form.Item {...sqlItemLayout} label="sql语句">
                         {getFieldDecorator('sql', {
                             rules: [{required: true, message: '请输入sql语句！'}],
-                        })(<TextArea rows={6}/>)}
+                        })(<TextArea rows={6} />)}
                     </Form.Item>
 
                     <Form.Item {...subBtnLayout}>

@@ -2,6 +2,9 @@
     max-width: 300px;
     margin: 50px auto;
 }
+.sql-product-form {
+    margin: 50px auto;
+}
 .login-form-forgot {
     float: right;
 }
