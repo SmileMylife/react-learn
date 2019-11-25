@@ -12,7 +12,7 @@ class NormalLoginForm extends React.Component {
                     body: values,
                     mode: 'no-cors',
                     //请求后台
-                    method: "POST`",
+                    method: "POST",
                 }).then(function (resp) {
                     return resp.json();
                 }).then(function (result) {
@@ -25,6 +25,7 @@ class NormalLoginForm extends React.Component {
     };
 
     render() {
+        console.log("猜想下登录页面的属性：", this.props);
         const {getFieldDecorator} = this.props.form;
         let url = process.env.PUBLIC_URL + '/img/cmos_logo.png';
         return (
