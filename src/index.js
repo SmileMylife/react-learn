@@ -13,6 +13,14 @@ import ReactReduxTestReducer from "./testcomponent/goOverRedux/reactRedux/ReactR
 import ReactReduxApp from "./testcomponent/goOverRedux/reactRedux/ReactReduxApp";
 import App from "./testcomponent/reactReduxDemoByGuanFang/components/App";
 import myReducers from "./testcomponent/reactReduxDemoByGuanFang/reducers/index";
+import ToDoArea from "./components/ToDoDetail/ToDoArea";
+import ToDoAreaDetail from "./components/ToDoDetail/ToDoAreaDetail";
+// import SegmentedControlExample, {TestWrapper1} from "./ant-d/TestAnt";
+import Demo from "./ant-d/TestAnt";
+import {Icon, NavBar, Popover, Steps, WhiteSpace} from "antd-mobile";
+import {TestWrapper} from "./components/ToDoDetail/SendSheet";
+import Test from "./testcomponent/redux/Test";
+import {REPLY_SHEET} from "./components/ToDoDetail/ReplySheet";
 /*import App from "./testcomponent/my_react_demo/App";
 import {createStore} from "redux";
 import { MyReduce } from "./testcomponent/my_react_demo/MyReduce";
@@ -92,9 +100,12 @@ store.subscribe(renderMe);*/
 
 //使用react-redux进行管理
 
-ReactDOM.render(<Provider store={store}>
+/*ReactDOM.render(<Provider store={store}>
     <App/>
-</Provider>, document.getElementById("root"));
+</Provider>, document.getElementById("root"));*/
 
-// ReactDOM.render(<ReduxApp/>, document.getElementById("root"));
+ReactDOM.render(<ToDoArea />, document.getElementById("root"));
+// ReactDOM.render(<ToDoArea />, document.getElementById("root"));
+
+
 
