@@ -1,30 +1,21 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-import {Icon, NavBar} from "antd-mobile";
+import {Icon, NavBar, Popover} from "antd-mobile";
+import {FRESH_SUCCESS, FRESH_FAIL, FRESH_LOADING} from "./Constants";
 
 class ToDoArea extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            threeData: [],
-            sixData: []
-        };
-    }
 
-    componentWillMount() {
-        /*console.log(moment().subtract(3, "months").format("YYYY-MM-DD HH:mm:ss"));
-        console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-        let dftParams = {...config.DEFAULT_PARAM};
-        let params = {
-            acptNum: Storage.getSession('acptNum'),
-            callingNum: Storage.getSession('acptNum'),
-            crtTime: moment().subtract(6, "months").format("YYYY-MM-DD HH:mm:ss"),
-            endTime: moment().format('YYYY-MM-DD HH:mm:ss'),
-            page: '1',
-            size: '200',    //暂定此页面大小，后续可更改
-            // url: 'http://172.22.225.46:10014/ngwfh5service/service/',
-            method: 'H5QueryComplexProblemProcess'
-        };*/
+    state = {
+        toDoList: [],
+        freshStatus: FRESH_SUCCESS
+    };
+
+    //刷新待办区列表
+    refreshToDoList = () => {
+        this.setState(function () {
+            return Object.assign({}, this.state, {freshStatus: FRESH_LOADING})
+        });
+
         /*Fetch.post(
             _.extend(params, dftParams),
             function (data) {
@@ -47,26 +38,42 @@ class ToDoArea extends Component {
                 console.log(data.returnMessage);
             }
         );*/
-        //需要本地测试放开这里
+
+        let timeOut = setTimeout(() => {
+            this.setState(() => {
+                console.log("设置万：", Object.assign({}, this.state, {freshStatus: FRESH_FAIL}));
+                return Object.assign({}, this.state, {freshStatus: FRESH_FAIL});
+            });
+        }, 2000);
+    };
+
+    //组件挂载完毕
+    componentWillMount() {
+        this.refreshToDoList();
+
+        //TODO 注释本地测试代码
         this.setState({
-            threeData:[
+            toDoList: [
                 {
                     "wrkfmId": "2000000759",
                     "srvReqstTypeNm": "家庭业务→服务触点→装维人员→全局流转→售后服务→布线不合理→全局流转",
                     "wrkfmShowSwftno": "20190110112027X427232430",
-                    "segTlmtStsCd": "1小时02分钟"
+                    "segTlmtStsCd": "001",
+                    "segTlmtStsTime": "1小时02分钟"
                 },
                 {
                     "wrkfmId": "2000000760",
                     "srvReqstTypeNm": "家庭业务→服务触点→装维人员→全局流转→售后服务→布线不合理→全局流转",
                     "wrkfmShowSwftno": "20190110112027X427232431",
-                    "segTlmtStsCd": "28分29秒"
+                    "segTlmtStsCd": "004",
+                    "segTlmtStsTime": "28分29秒"
                 },
                 {
                     "wrkfmId": "2000000761",
                     "srvReqstTypeNm": "家庭业务→服务触点→装维人员→全局流转→售后服务→布线不合理→全局流转",
                     "wrkfmShowSwftno": "20190110112027X427232432",
-                    "segTlmtStsCd": "1小时10分钟"
+                    "segTlmtStsCd": "003",
+                    "segTlmtStsTime": "1小时10分钟"
                 }
             ]
         })
@@ -77,35 +84,48 @@ class ToDoArea extends Component {
     }
 
     render() {
-        /*let backElement = null;
-        let acptNum = Storage.getSession('acptNum');
-        if (Storage.getSession("isSplit") === config.COMMON_CONST.NO) {
-            backElement = <i className="cloud cloud-back" onClick={e => this.back()}/>;
-        }*/
         return (
             <div>
+                {/*上方导航部分*/}
                 <NavBar
                     mode="dark"
-                    icon={<Icon style={{marginLeft: "30px"}} type="left" onClick={this.back}/>}>待办区</NavBar>
+                    icon={<Icon style={{marginLeft: "0px"}} type="left" onClick={this.back}/>}
+                    rightContent={this.state.freshStatus === 0 ? <Icon type={"check"} onClick={this.refreshToDoList}/>
+                        : this.state.freshStatus === 1 ? <Icon type={"loading"}/> :
+                            <Icon type={"cross"} onClick={this.refreshToDoList}/>}
+                >待办区</NavBar>
+
+                {/*列表展示部分*/}
                 <div>
-                    {(this.state.threeData || []).map((item, index) =>
+                    {(this.state.toDoList || []).map((item, index) =>
                         <div className="todo-box" key={index}>
-                            <p className="todo-sheet float-left">工单流水：{item.wrkfmShowSwftno}</p>
+                            <p className="float-left"><span
+                                className="field-name">工单流水：</span>{item.wrkfmShowSwftno}</p>
                             <div className="float-right">
-                                <a>{/*<Link
-                                    to={'/cpf/SrAcceptQryDtl/' + item.wrkfmId + '/' + item.provCode + '/' + item.wrkfmShowSwftno}></Link>*/}
-                                    <span className="right-arrow"/></a>
+                                {/*<Link to={'/cpf/SrAcceptQryDtl/' + item.wrkfmId + '/' + item.provCode + '/' + item.wrkfmShowSwftno}></Link>*/}
+                                <Icon type={"right"}/>
                             </div>
                             <div style={{clear: "both"}}/>
-                            <p className="reply-des todo-sheet">服务请求节点：{item.srvReqstTypeNm}</p>
-                            <p className="reply-des todo-sheet">本环节时限：{item.segTlmtStsCd}</p>
+                            {/*服务请求节点展示*/}
+                            <div className={"float-left"}>
+                                <p className={"field-name"}>服务请求节点：</p>
+                            </div>
+                            <div className={"float-left"}>
+                                <p>{item.srvReqstTypeNm}</p>
+                            </div>
+                            <p style={{clear: "both"}}>
+                                <span className="field-name">本环节时限：</span>
+                                {item.segTlmtStsCd === "003" || item.segTlmtStsCd === "004"
+                                    ? <span
+                                        style={{color: "red"}}>{item.segTlmtStsTime}</span> :
+                                    <span>{item.segTlmtStsTime}</span>}
+                            </p>
                         </div>
                     )}
                 </div>
             </div>
         );
     }
-
 }
 
 export default ToDoArea;

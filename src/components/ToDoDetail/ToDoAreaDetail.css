@@ -14,6 +14,10 @@ body{
     float: left;
 }
 
+.field-name {
+    font-weight: bold;
+}
+
 /*待办区外部边框*/
 .todo-box {
     width: 90%;
