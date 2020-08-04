@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
+import TestAnt from "./ant-d/TestAnt"
 import ReduxDemo from "./testcomponent/redux/reduxDemo";
 import Model from "./testcomponent/model/Model";
 import IndexApp from "./testcomponent/indexApp/IndexApp";
@@ -104,7 +105,7 @@ store.subscribe(renderMe);*/
     <App/>
 </Provider>, document.getElementById("root"));*/
 
-ReactDOM.render(<ToDoArea />, document.getElementById("root"));
+ReactDOM.render(<TestAnt />, document.getElementById("root"));
 // ReactDOM.render(<ToDoArea />, document.getElementById("root"));
 
 

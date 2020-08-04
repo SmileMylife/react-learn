@@ -49,6 +49,7 @@ class ToDoArea extends Component {
 
     //组件挂载完毕
     componentWillMount() {
+        console.log("shengmingzhouqizhixingle");
         this.refreshToDoList();
 
         //TODO 注释本地测试代码
@@ -84,6 +85,7 @@ class ToDoArea extends Component {
     }
 
     render() {
+        console.log("render执行了！");
         return (
             <div>
                 {/*上方导航部分*/}
